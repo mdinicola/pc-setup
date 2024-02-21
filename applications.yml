@@ -1,0 +1,6 @@
+---
+- name: Install Applications
+  hosts: localhost
+  become: yes
+  roles:
+    - applications

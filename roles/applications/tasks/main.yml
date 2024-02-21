@@ -1,2 +1,21 @@
 ---
-# tasks file for applications
+# tasks for googlechrome | Debian/Ubuntu Family
+
+- name: Add google APT repository
+  ansible.builtin.deb822_repository:
+    name: google
+    types: [deb]
+    uris:
+      - "https://dl.google.com/linux/chrome/deb"
+    signed_by: "{{ googlechrome_gpg_key }}"
+    architectures: amd64
+    suites: [stable]
+    components: [main]
+    state: present
+    enabled: yes
+
+- name: Installing {{ googlechrome_app_name }}
+  ansible.builtin.apt:
+    name: "{{ googlechrome_app_name }}"
+    state: present
+    update_cache: yes
