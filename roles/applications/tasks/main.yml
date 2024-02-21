@@ -1,27 +1,41 @@
 ---
-- name: Add google APT repository
-  ansible.builtin.deb822_repository:
-    name: google
-    types: [deb]
-    uris: https://dl.google.com/linux/chrome/deb
-    signed_by: https://dl.google.com/linux/linux_signing_key.pub
-    architectures: amd64
-    suites: [stable]
-    components: [main]
-    state: present
-    enabled: yes
+- name: Add APT repositories
+  block:
+  - name: Add google APT repository
+    ansible.builtin.deb822_repository:
+      name: google
+      types: [deb]
+      uris: https://dl.google.com/linux/chrome/deb
+      signed_by: https://dl.google.com/linux/linux_signing_key.pub
+      architectures: amd64
+      suites: [stable]
+      components: [main]
+      state: present
+      enabled: yes
 
-- name: Add VSCode APT repository
-  ansible.builtin.deb822_repository:
-    name: vscode
-    types: [deb]
-    uris: https://packages.microsoft.com/repos/code
-    signed_by: https://packages.microsoft.com/keys/microsoft.asc
-    architectures: amd64
-    suites: [stable]
-    components: [main]
-    state: present
-    enabled: yes
+  - name: Add VSCode APT repository
+    ansible.builtin.deb822_repository:
+      name: vscode
+      types: [deb]
+      uris: https://packages.microsoft.com/repos/code
+      signed_by: https://packages.microsoft.com/keys/microsoft.asc
+      architectures: amd64
+      suites: [stable]
+      components: [main]
+      state: present
+      enabled: yes
+
+  - name: Add ShiftKey APT repository
+    ansible.builtin.deb822_repository:
+      name: shiftkey-packages
+      types: [deb]
+      uris: https://apt.packages.shiftkey.dev/ubuntu
+      signed_by: https://apt.packages.shiftkey.dev/gpg.key
+      architectures: amd64
+      suites: [any]
+      components: [main]
+      state: present
+      enabled: yes
 
 - name: Install applications
   ansible.builtin.apt:
@@ -32,3 +46,4 @@
     - apt-transport-https
     - google-chrome-stable
     - code # vscode
+    - github-desktop
