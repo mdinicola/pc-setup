@@ -1,21 +1,34 @@
 ---
-# tasks for googlechrome | Debian/Ubuntu Family
-
 - name: Add google APT repository
   ansible.builtin.deb822_repository:
     name: google
     types: [deb]
-    uris:
-      - "https://dl.google.com/linux/chrome/deb"
-    signed_by: "{{ googlechrome_gpg_key }}"
+    uris: https://dl.google.com/linux/chrome/deb
+    signed_by: https://dl.google.com/linux/linux_signing_key.pub
     architectures: amd64
     suites: [stable]
     components: [main]
     state: present
     enabled: yes
 
-- name: Installing {{ googlechrome_app_name }}
+- name: Add VSCode APT repository
+  ansible.builtin.deb822_repository:
+    name: vscode
+    types: [deb]
+    uris: https://packages.microsoft.com/repos/code
+    signed_by: https://packages.microsoft.com/keys/microsoft.asc
+    architectures: amd64
+    suites: [stable]
+    components: [main]
+    state: present
+    enabled: yes
+
+- name: Install applications
   ansible.builtin.apt:
-    name: "{{ googlechrome_app_name }}"
+    name: "{{ item }}"
     state: present
     update_cache: yes
+  with_items:
+    - apt-transport-https
+    - google-chrome-stable
+    - code # vscode
