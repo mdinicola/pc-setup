@@ -70,7 +70,7 @@
 
 - name: Add NordVPN APT repository
   ansible.builtin.deb822_repository:
-    name: spotify
+    name: nordvpn
     types: [deb]
     uris: https://repo.nordvpn.com/deb/nordvpn/debian
     signed_by: https://repo.nordvpn.com//gpg/nordvpn_public.asc

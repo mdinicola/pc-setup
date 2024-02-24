@@ -10,6 +10,14 @@
     - xserver-xorg-input-synaptics
     - xz-utils
 
+- name: Install synaptics-repository-keyring
+  ansible.builtin.apt:
+    deb: https://www.synaptics.com/sites/default/files/Ubuntu/pool/stable/main/all/synaptics-repository-keyring.deb
+
+- name: Update APT cache
+  ansible.builtin.apt:
+    update_cache: yes
+
 - name: Install drivers
   ansible.builtin.apt:
     name: "{{ item }}"
