@@ -67,3 +67,14 @@
     components: [non-free]
     state: present
     enabled: yes
+
+- name: Add NordVPN APT repository
+  ansible.builtin.deb822_repository:
+    name: spotify
+    types: [deb]
+    uris: https://repo.nordvpn.com/deb/nordvpn/debian
+    signed_by: https://repo.nordvpn.com//gpg/nordvpn_public.asc
+    suites: [stable]
+    components: [main]
+    state: present
+    enabled: yes

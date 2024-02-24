@@ -28,6 +28,7 @@
     - github-desktop
     - dbeaver-ce
     - spotify-client
+    - nordvpn
 
 - name: Install development tools
   ansible.builtin.apt:
