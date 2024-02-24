@@ -7,10 +7,6 @@
   ansible.builtin.include_tasks: 
     file: repositories.yml
 
-- name: Update APT cache
-  ansible.builtin.apt:
-    update_cache: yes
-
 - name: Install Packages
   ansible.builtin.include_tasks: 
     file: packages.yml

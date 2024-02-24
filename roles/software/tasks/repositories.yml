@@ -10,6 +10,8 @@
     components: [main]
     state: present
     enabled: yes
+  notify:
+    - Update APT cache
 
 - name: Add VSCode APT repository
   ansible.builtin.deb822_repository:
@@ -22,6 +24,8 @@
     components: [main]
     state: present
     enabled: yes
+  notify:
+    - Update APT cache
 
 - name: Add ShiftKey APT repository
   ansible.builtin.deb822_repository:
@@ -34,6 +38,8 @@
     components: [main]
     state: present
     enabled: yes
+  notify:
+    - Update APT cache
 
 - name: Add Docker Module Repository
   ansible.builtin.deb822_repository:
@@ -46,6 +52,8 @@
     components: [stable]
     state: present
     enabled: yes
+  notify:
+    - Update APT cache
 
 - name: Add DBeaver APT repository
   ansible.builtin.deb822_repository:
@@ -56,6 +64,8 @@
     suites: [/]
     state: present
     enabled: yes
+  notify:
+    - Update APT cache
 
 - name: Add Spotify APT repository
   ansible.builtin.deb822_repository:
@@ -67,6 +77,8 @@
     components: [non-free]
     state: present
     enabled: yes
+  notify:
+    - Update APT cache
 
 - name: Add NordVPN APT repository
   ansible.builtin.deb822_repository:
@@ -78,3 +90,5 @@
     components: [main]
     state: present
     enabled: yes
+  notify:
+    - Update APT cache

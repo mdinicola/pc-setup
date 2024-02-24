@@ -1,2 +1,4 @@
 ---
-# handlers file for applications
+- name: Update APT cache
+  ansible.builtin.apt:
+    update_cache: yes
