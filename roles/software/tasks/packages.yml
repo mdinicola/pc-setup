@@ -1,0 +1,54 @@
+---
+- name: Install packages
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - xserver-xorg-input-synaptics
+    - xz-utils
+
+- name: Install drivers
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - displaylink-driver
+
+- name: Install applications
+  ansible.builtin.apt:
+    name: "{{ item }}"  
+    state: present
+  with_items:
+    - google-chrome-stable
+    - notepadqq
+    - code # Visual Studio Code
+    - github-desktop
+    - dbeaver-ce
+    - spotify-client
+
+- name: Install development tools
+  ansible.builtin.apt:
+    name: "{{ item }}"  
+    state: present
+  with_items:
+    - git
+    - python3
+    - python3-pip
+    - apache2
+    - php
+    - libapache2-mod-php
+    - php-mysql
+
+- name: Install docker
+  ansible.builtin.apt:
+    name: "{{ item }}"  
+    state: present
+  with_items:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+    - docker-buildx-plugin
+    - docker-compose-plugin

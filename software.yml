@@ -1,0 +1,6 @@
+---
+- name: Install Software
+  hosts: localhost
+  become: yes
+  roles:
+    - software

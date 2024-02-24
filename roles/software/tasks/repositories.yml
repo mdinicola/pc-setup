@@ -1,0 +1,69 @@
+---
+- name: Add google APT repository
+  ansible.builtin.deb822_repository:
+    name: google
+    types: [deb]
+    uris: https://dl.google.com/linux/chrome/deb
+    signed_by: https://dl.google.com/linux/linux_signing_key.pub
+    architectures: amd64
+    suites: [stable]
+    components: [main]
+    state: present
+    enabled: yes
+
+- name: Add VSCode APT repository
+  ansible.builtin.deb822_repository:
+    name: vscode
+    types: [deb]
+    uris: https://packages.microsoft.com/repos/code
+    signed_by: https://packages.microsoft.com/keys/microsoft.asc
+    architectures: amd64
+    suites: [stable]
+    components: [main]
+    state: present
+    enabled: yes
+
+- name: Add ShiftKey APT repository
+  ansible.builtin.deb822_repository:
+    name: shiftkey-packages
+    types: [deb]
+    uris: https://apt.packages.shiftkey.dev/ubuntu
+    signed_by: https://apt.packages.shiftkey.dev/gpg.key
+    architectures: amd64
+    suites: [any]
+    components: [main]
+    state: present
+    enabled: yes
+
+- name: Add Docker Module Repository
+  ansible.builtin.deb822_repository:
+    name: docker
+    types: [deb]
+    uris: "https://download.docker.com/linux/ubuntu"
+    signed_by: "https://download.docker.com/linux/ubuntu/gpg"
+    architectures: amd64
+    suites: ["{{ ubuntu_codename | lower }}"]
+    components: [stable]
+    state: present
+    enabled: yes
+
+- name: Add DBeaver APT repository
+  ansible.builtin.deb822_repository:
+    name: dbeaver
+    types: [deb]
+    uris: https://dbeaver.io/debs/dbeaver-ce
+    signed_by: https://dbeaver.io/debs/dbeaver.gpg.key
+    suites: [/]
+    state: present
+    enabled: yes
+
+- name: Add Spotify APT repository
+  ansible.builtin.deb822_repository:
+    name: spotify
+    types: [deb]
+    uris: http://repository.spotify.com
+    signed_by: https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg
+    suites: [stable]
+    components: [non-free]
+    state: present
+    enabled: yes

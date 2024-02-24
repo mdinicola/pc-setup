@@ -1,0 +1,16 @@
+---
+- name: Set Ubuntu Codename
+  set_fact:
+    ubuntu_codename: "{{ lookup('ini', 'UBUNTU_CODENAME', type='properties', file='/etc/os-release') }}"
+
+- name: Add APT repositories
+  ansible.builtin.include_tasks: 
+    file: repositories.yml
+
+- name: Update APT cache
+  ansible.builtin.apt:
+    update_cache: yes
+
+- name: Install Packages
+  ansible.builtin.include_tasks: 
+    file: packages.yml
