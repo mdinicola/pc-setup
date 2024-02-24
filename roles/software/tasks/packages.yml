@@ -35,6 +35,7 @@
     - dbeaver-ce
     - spotify-client
     - nordvpn
+    - vlc
 
 - name: Install development tools
   ansible.builtin.apt:
