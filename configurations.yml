@@ -1,0 +1,6 @@
+---
+- name: Update Configurations
+  hosts: localhost
+  become: yes
+  roles:
+    - configurations
