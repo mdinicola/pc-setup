@@ -1,0 +1,7 @@
+---
+- name: Fix displaylink slow startup
+  ansible.builtin.lineinfile:
+    path: /opt/displaylink/udev.sh
+    search_string: 'systemctl start displaylink-driver'
+    line: '  systemctl start displaylink-driver --no-block'
+    state: present
