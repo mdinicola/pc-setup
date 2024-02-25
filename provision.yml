@@ -1,0 +1,7 @@
+---
+- name: Provision linux server
+  hosts: localhost
+  become: yes
+  roles:
+    - software
+    - configurations
