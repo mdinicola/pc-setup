@@ -5,3 +5,19 @@
     search_string: 'systemctl start displaylink-driver'
     line: '  systemctl start displaylink-driver --no-block'
     state: present
+
+- name: Copy script to fix password screen on boot
+  ansible.builtin.copy:
+    src: displaylink/start_all_xrandr_fast.sh
+    dest: /etc/lightdm/start_all_xrandr_fast.sh
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Enable fix to show password screen on boot
+  ansible.builtin.copy:
+    src: displaylink/60-displaylink.conf
+    dest: /etc/lightdm/lightdm.conf.d/60-displaylink.conf
+    owner: root
+    group: root
+    mode: '0644'
