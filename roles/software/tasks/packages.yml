@@ -6,6 +6,7 @@
   with_items:
     - apt-transport-https
     - ca-certificates
+    - cifs-utils
     - curl
     - xserver-xorg-input-synaptics
     - xz-utils
@@ -49,6 +50,8 @@
     - php
     - libapache2-mod-php
     - php-mysql
+    - php-xml
+    - php-curl
 
 - name: Install docker
   ansible.builtin.apt:
