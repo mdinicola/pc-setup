@@ -97,7 +97,7 @@
   ansible.builtin.deb822_repository:
     name: nodesource
     types: [deb]
-    uris: https://deb.nodesource.com/node_21.x
+    uris: https://deb.nodesource.com/node_20.x
     signed_by: https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key
     architectures: amd64
     suites: [nodistro]
