@@ -1,0 +1,5 @@
+---
+- name: Install general communtity module
+  ansible.builtin.shell: ansible-galaxy collection install community.general
+  register: install_module_result
+  changed_when: "'Nothing to do' not in install_module_result.stdout"

@@ -1,0 +1,5 @@
+---
+- name: Install Ansible Galaxy modules
+  hosts: localhost
+  roles:
+    - ansible-galaxy
