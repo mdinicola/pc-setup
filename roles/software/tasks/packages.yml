@@ -66,3 +66,10 @@
     - containerd.io
     - docker-buildx-plugin
     - docker-compose-plugin
+
+- name: Install global npm packages
+  community.general.npm:
+    name: "{{ item }}"
+    global: true
+  with_items:
+    - pnpm
