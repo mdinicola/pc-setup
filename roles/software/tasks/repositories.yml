@@ -92,3 +92,19 @@
     enabled: yes
   notify:
     - Update APT cache
+
+- name: Add NodeSource APT repository
+  ansible.builtin.deb822_repository:
+    name: nodesource
+    types: [deb]
+    uris: https://deb.nodesource.com/node_21.x
+    signed_by: https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key
+    architectures: amd64
+    suites: [nodistro]
+    components: [main]
+    state: present
+    enabled: yes
+  notify:
+    - Update APT cache
+
+- meta: flush_handlers
