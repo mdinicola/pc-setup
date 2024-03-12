@@ -13,18 +13,13 @@
   notify:
     - Update APT cache
 
-- name: Add VSCode APT repository
 - name: Add VSCodium APT repository
   ansible.builtin.deb822_repository:
-    name: vscode
     name: vscodium
     types: [deb]
-    uris: https://packages.microsoft.com/repos/code
-    signed_by: https://packages.microsoft.com/keys/microsoft.asc
     uris: https://download.vscodium.com/debs
     signed_by: https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
     architectures: amd64
-    suites: [stable]
     suites: [vscodium]
     components: [main]
     state: present
@@ -32,7 +27,6 @@
   notify:
     - Update APT cache
 
-- name: Add ShiftKey APT repository
 - name: Add ShiftKey APT repository # GitHub Desktop
   ansible.builtin.deb822_repository:
     name: shiftkey-packages
@@ -68,19 +62,6 @@
     uris: https://dbeaver.io/debs/dbeaver-ce
     signed_by: https://dbeaver.io/debs/dbeaver.gpg.key
     suites: [/]
-    state: present
-    enabled: yes
-  notify:
-    - Update APT cache
-
-- name: Add Spotify APT repository
-  ansible.builtin.deb822_repository:
-    name: spotify
-    types: [deb]
-    uris: http://repository.spotify.com
-    signed_by: https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg
-    suites: [stable]
-    components: [non-free]
     state: present
     enabled: yes
   notify:

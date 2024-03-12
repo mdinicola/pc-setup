@@ -10,6 +10,7 @@
     - curl
     - xserver-xorg-input-synaptics
     - xz-utils
+    - nala
 
 - name: Install synaptics-repository-keyring
   ansible.builtin.apt:
@@ -26,20 +27,27 @@
   with_items:
     - displaylink-driver
 
-- name: Install applications
+- name: Install apt applications
   ansible.builtin.apt:
     name: "{{ item }}"  
     state: present
   with_items:
     - google-chrome-stable
     - notepadqq
-    - code # Visual Studio Code
     - codium # Visual Studio Code
     - github-desktop
-    - dbeaver-ce
-    - spotify-client
     - nordvpn
     - vlc
+
+- name: Install flatpak applications
+  community.general.flatpak:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - com.github.tchx84.Flatseal
+    - com.spotify.Client
+    - com.skype.Client
+    - io.dbeaver.DBeaverCommunity
 
 - name: Install development tools
   ansible.builtin.apt:
