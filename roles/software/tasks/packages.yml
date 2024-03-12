@@ -34,6 +34,7 @@
     - google-chrome-stable
     - notepadqq
     - code # Visual Studio Code
+    - codium # Visual Studio Code
     - github-desktop
     - dbeaver-ce
     - spotify-client
