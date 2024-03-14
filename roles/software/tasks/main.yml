@@ -3,6 +3,25 @@
   set_fact:
     ubuntu_codename: "{{ lookup('ini', 'UBUNTU_CODENAME', type='properties', file='/etc/os-release') }}"
 
+- name: Uninstall default APT packages
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - libreoffice*
+    - hexchat
+    - celluloid
+    - hypnotix
+    - rhythmbox
+
+- name: Clean APT
+  ansible.builtin.apt:
+    clean: yes
+
+- name: Autoremove APT
+  ansible.builtin.apt:
+    autoremove: yes
+
 - name: Add APT repositories
   ansible.builtin.include_tasks: 
     file: repositories.yml
