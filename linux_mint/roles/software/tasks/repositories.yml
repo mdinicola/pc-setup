@@ -27,20 +27,6 @@
   notify:
     - Update APT cache
 
-- name: Add ShiftKey APT repository # GitHub Desktop
-  ansible.builtin.deb822_repository:
-    name: shiftkey-packages
-    types: [deb]
-    uris: https://apt.packages.shiftkey.dev/ubuntu
-    signed_by: https://apt.packages.shiftkey.dev/gpg.key
-    architectures: amd64
-    suites: [any]
-    components: [main]
-    state: present
-    enabled: yes
-  notify:
-    - Update APT cache
-
 - name: Add Docker Module Repository
   ansible.builtin.deb822_repository:
     name: docker
