@@ -83,3 +83,7 @@
   with_items:
     - pnpm
     - turbo
+
+- name: Install AWS CLI
+  mdinicola.aws_tools_linux.aws_cli:
+    state: present

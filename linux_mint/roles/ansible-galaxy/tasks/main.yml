@@ -5,3 +5,4 @@
   changed_when: "'Nothing to do' not in install_module_result.stdout"
   with_items:
     - community.general
+    - mdinicola.aws_tools_linux
