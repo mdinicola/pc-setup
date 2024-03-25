@@ -2,4 +2,4 @@
 - name: Install Ansible Galaxy modules
   hosts: localhost
   roles:
-    - ../roles/ansible-galaxy
+    - ../roles/ansible_galaxy
