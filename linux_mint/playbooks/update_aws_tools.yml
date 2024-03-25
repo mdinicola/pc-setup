@@ -1,0 +1,8 @@
+---
+- name: Update AWS Tools
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Update AWS CLI
+      mdinicola.aws_tools_linux.aws_cli:
+        state: updated
