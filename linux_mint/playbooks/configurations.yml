@@ -3,4 +3,4 @@
   hosts: localhost
   become: yes
   roles:
-    - configurations
+    - ../roles/configurations
