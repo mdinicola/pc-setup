@@ -1,0 +1,9 @@
+---
+- name: Set environment variables for user
+  ansible.builtin.blockinfile:
+    path: ~/.bashrc
+    block: |
+      # terraform
+      export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
+    append_newline: true
+    state: present

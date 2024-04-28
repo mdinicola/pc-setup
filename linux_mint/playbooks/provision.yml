@@ -5,3 +5,8 @@
   roles:
     - ../roles/software
     - ../roles/configurations
+
+- name: Provision user configurations
+  hosts: localhost
+  roles:
+    - ../roles/configurations_user

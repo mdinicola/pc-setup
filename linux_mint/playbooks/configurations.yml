@@ -1,5 +1,5 @@
 ---
-- name: Update Configurations
+- name: Update configurations
   hosts: localhost
   become: yes
   roles:
