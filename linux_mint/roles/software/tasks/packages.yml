@@ -10,6 +10,8 @@
     - curl
     - xserver-xorg-input-synaptics
     - xz-utils
+    - gnupg
+    - software-properties-common
     - nala
 
 - name: Install synaptics-repository-keyring
@@ -64,6 +66,7 @@
     - php-xml
     - php-curl
     - nodejs
+    - terraform
 
 - name: Install docker
   ansible.builtin.apt:
