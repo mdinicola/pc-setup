@@ -50,6 +50,7 @@
     - com.skype.Client
     - io.dbeaver.DBeaverCommunity
     - com.axosoft.GitKraken
+    - com.getpostman.Postman
 
 - name: Install development tools
   ansible.builtin.apt:
