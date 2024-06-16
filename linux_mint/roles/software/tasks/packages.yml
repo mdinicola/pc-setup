@@ -89,4 +89,8 @@
 
 - name: Install AWS CLI
   mdinicola.aws_tools_linux.aws_cli:
-    state: present
+    state: updated
+
+- name: Install AWS SAM CLI
+  mdinicola.aws_tools_linux.aws_sam_cli:
+    state: updated

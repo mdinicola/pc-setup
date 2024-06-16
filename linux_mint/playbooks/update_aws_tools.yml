@@ -6,3 +6,7 @@
     - name: Update AWS CLI
       mdinicola.aws_tools_linux.aws_cli:
         state: updated
+
+    - name: Update AWS SAM CLI
+      mdinicola.aws_tools_linux.aws_sam_cli:
+        state: updated
