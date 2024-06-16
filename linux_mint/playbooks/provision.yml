@@ -9,4 +9,5 @@
 - name: Provision user configurations
   hosts: localhost
   roles:
+    - ../roles/software_user
     - ../roles/configurations_user
