@@ -1,18 +1,4 @@
 ---
-- name: Add google APT repository
-  ansible.builtin.deb822_repository:
-    name: google
-    types: [deb]
-    uris: https://dl.google.com/linux/chrome/deb
-    signed_by: https://dl.google.com/linux/linux_signing_key.pub
-    architectures: amd64
-    suites: [stable]
-    components: [main]
-    state: present
-    enabled: yes
-  notify:
-    - Update APT cache
-
 - name: Add VSCodium APT repository
   ansible.builtin.deb822_repository:
     name: vscodium
