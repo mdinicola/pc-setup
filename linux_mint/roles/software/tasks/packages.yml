@@ -67,7 +67,6 @@
     - php-mysql
     - php-xml
     - php-curl
-    - nodejs
     - terraform
 
 - name: Install docker
@@ -80,14 +79,6 @@
     - containerd.io
     - docker-buildx-plugin
     - docker-compose-plugin
-
-- name: Install global npm packages
-  community.general.npm:
-    name: "{{ item }}"
-    global: true
-  with_items:
-    - pnpm
-    - turbo
 
 - name: Install AWS CLI
   mdinicola.aws_tools_linux.aws_cli:
