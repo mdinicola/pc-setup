@@ -27,18 +27,6 @@
   notify:
     - Update APT cache
 
-- name: Add DBeaver APT repository
-  ansible.builtin.deb822_repository:
-    name: dbeaver
-    types: [deb]
-    uris: https://dbeaver.io/debs/dbeaver-ce
-    signed_by: https://dbeaver.io/debs/dbeaver.gpg.key
-    suites: [/]
-    state: present
-    enabled: yes
-  notify:
-    - Update APT cache
-
 - name: Add NordVPN APT repository
   ansible.builtin.deb822_repository:
     name: nordvpn
