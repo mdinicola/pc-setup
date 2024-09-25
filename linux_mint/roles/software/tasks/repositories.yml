@@ -54,4 +54,17 @@
   notify:
     - Update APT cache
 
+- name: Add Brave Browser APT repository
+  ansible.builtin.deb822_repository:
+    name: hashicorp
+    types: [deb]
+    uris: https://brave-browser-apt-release.s3.brave.com/
+    signed_by: https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+    suites: [stable]
+    components: [main]
+    state: present
+    enabled: yes
+  notify:
+    - Update APT cache
+
 - meta: flush_handlers
