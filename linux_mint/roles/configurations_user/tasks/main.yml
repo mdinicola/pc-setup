@@ -1,4 +1,62 @@
 ---
+- name: Copy monitor configuration file
+  ansible.builtin.template:
+    src: files/cinnamon-monitors.xml
+    dest: ~/.config/cinnamon-monitors.xml
+
+- name: Install Cinnamon Applets
+  include_tasks: cinnamon_applets.yml
+  with_items:
+    - windowlist@cobinja.de
+
+- name: Disable welcome page
+  community.general.dconf:
+    key: "/com/linuxmint/updates/show-welcome-page"
+    value: "false"
+    state: present
+
+- name: Set file explorer to list-view display mode
+  community.general.dconf:
+    key: "/org/nemo/preferences/default-folder-viewer"
+    value: "'list-view'"
+    state: present
+
+- name: Set file explorer to show hidden files
+  community.general.dconf:
+    key: "/org/nemo/preferences/show-hidden-files"
+    value: "true"
+    state: present
+
+- name: Configure calendar
+  ansible.builtin.template:
+    src: files/cinnamon-spices-calendar.json
+    dest: "~/.config/cinnamon/spices/calendar@cinnamon.org/{{ item }}.json"
+  with_items:
+    - "13"
+    - "18"
+    - "22"
+
+- name: Configure windowlist
+  ansible.builtin.template:
+    src: files/cinnamon-spices-windowlist-{{ item }}.json
+    dest: "~/.config/cinnamon/spices/windowlist@cobinja.de/{{ item }}.json"
+  with_items:
+    - "29"
+    - "30"
+    - "31"
+
+- name: Enable panels on monitors
+  community.general.dconf:
+    key: "/org/cinnamon/panels-enabled"
+    value: "['1:0:bottom', '2:2:bottom', '3:1:bottom']"
+    state: present
+
+- name: Configure panels
+  community.general.dconf:
+    key: "/org/cinnamon/enabled-applets"
+    value: "['panel1:left:2:menu@cinnamon.org:0', 'panel1:left:3:separator@cinnamon.org:1', 'panel1:right:1:systray@cinnamon.org:3', 'panel1:right:2:xapp-status@cinnamon.org:4', 'panel1:right:3:notifications@cinnamon.org:5', 'panel1:right:5:removable-drives@cinnamon.org:7', 'panel1:right:6:keyboard@cinnamon.org:8', 'panel1:right:8:network@cinnamon.org:10', 'panel1:right:9:sound@cinnamon.org:11', 'panel1:right:10:power@cinnamon.org:12', 'panel1:right:11:calendar@cinnamon.org:13', 'panel1:right:13:cornerbar@cinnamon.org:14', 'panel1:left:0:separator@cinnamon.org:15', 'panel2:left:0:separator@cinnamon.org:16', 'panel3:left:0:separator@cinnamon.org:17', 'panel2:right:7:calendar@cinnamon.org:18', 'panel2:right:8:separator@cinnamon.org:19', 'panel3:right:2:calendar@cinnamon.org:22', 'panel3:right:3:separator@cinnamon.org:23', 'panel2:left:1:windowlist@cobinja.de:29', 'panel3:left:1:windowlist@cobinja.de:30', 'panel1:left:4:windowlist@cobinja.de:31', 'panel1:right:0:panel-launchers@cinnamon.org:32']"
+    state: present
+
 - name: Set environment variables for user
   ansible.builtin.blockinfile:
     path: ~/.bashrc

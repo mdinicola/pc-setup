@@ -1,0 +1,23 @@
+---
+- name: Check if cinnamon applet exists
+  stat:
+    path: "~/.local/share/cinnamon/applets/{{ item }}"
+  register: result
+
+- name: Download cinnamon applet
+  ansible.builtin.get_url:
+    url: "https://cinnamon-spices.linuxmint.com/files/applets/{{ item }}.zip"
+    dest: "~/Downloads/{{ item }}.zip"
+  when: not result.stat.exists
+
+- name: Extract cinnamon applet
+  ansible.builtin.unarchive:
+    src: "~/Downloads/{{ item }}.zip"
+    dest: "~/Downloads"
+  when: not result.stat.exists
+
+- name: Install cinnamon applet
+  ansible.builtin.copy:
+    src: "~/Downloads/{{ item }}"
+    dest: "~/.local/share/cinnamon/applets/{{ item }}"
+  when: not result.stat.exists

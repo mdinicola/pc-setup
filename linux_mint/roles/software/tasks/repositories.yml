@@ -27,19 +27,6 @@
   notify:
     - Update APT cache
 
-- name: Add NordVPN APT repository
-  ansible.builtin.deb822_repository:
-    name: nordvpn
-    types: [deb]
-    uris: https://repo.nordvpn.com/deb/nordvpn/debian
-    signed_by: https://repo.nordvpn.com//gpg/nordvpn_public.asc
-    suites: [stable]
-    components: [main]
-    state: present
-    enabled: yes
-  notify:
-    - Update APT cache
-
 - name: Add HashiCorp APT repository
   ansible.builtin.deb822_repository:
     name: hashicorp
@@ -56,7 +43,7 @@
 
 - name: Add Brave Browser APT repository
   ansible.builtin.deb822_repository:
-    name: hashicorp
+    name: brave
     types: [deb]
     uris: https://brave-browser-apt-release.s3.brave.com/
     signed_by: https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
