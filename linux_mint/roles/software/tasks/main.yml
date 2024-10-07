@@ -7,6 +7,7 @@
   ansible.builtin.apt:
     name: "{{ item }}"
     state: absent
+    purge: true
   with_items:
     - libreoffice*
     - hexchat
