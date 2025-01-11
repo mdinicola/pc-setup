@@ -1,11 +1,4 @@
 ---
-- name: Fix displaylink slow startup
-  ansible.builtin.lineinfile:
-    path: /opt/displaylink/udev.sh
-    search_string: 'systemctl start displaylink-driver'
-    line: '  systemctl start displaylink-driver --no-block'
-    state: present
-
 - name: Copy script to fix password screen on boot
   ansible.builtin.copy:
     src: displaylink/start_all_xrandr_fast.sh
