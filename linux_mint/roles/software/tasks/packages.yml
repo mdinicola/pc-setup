@@ -13,6 +13,7 @@
     - gnupg
     - software-properties-common
     - nala
+    - ffmpeg
 
 - name: Install synaptics-repository-keyring
   ansible.builtin.apt:
@@ -52,6 +53,7 @@
     - com.axosoft.GitKraken
     - com.getpostman.Postman
     - com.borgbase.Vorta
+    - com.sindresorhus.Caprine
 
 - name: Install development tools
   ansible.builtin.apt:
