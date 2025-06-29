@@ -40,6 +40,7 @@
     - codium # Visual Studio Code
     - vlc
     - qdirstat
+    - flameshot
 
 - name: Install flatpak applications
   community.general.flatpak:
@@ -51,7 +52,6 @@
     - com.skype.Client
     - io.dbeaver.DBeaverCommunity
     - com.axosoft.GitKraken
-    - com.getpostman.Postman
     - com.borgbase.Vorta
     - com.sindresorhus.Caprine
 
