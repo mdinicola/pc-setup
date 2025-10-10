@@ -9,8 +9,8 @@
 
 - name: Enable fix to show password screen on boot
   ansible.builtin.copy:
-    src: displaylink/60-displaylink.conf
-    dest: /etc/lightdm/lightdm.conf.d/60-displaylink.conf
+    src: displaylink/80-displaylink.conf
+    dest: /etc/lightdm/lightdm.conf.d/80-displaylink.conf
     owner: root
     group: root
     mode: '0644'
