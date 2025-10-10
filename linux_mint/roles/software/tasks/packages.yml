@@ -49,7 +49,6 @@
   with_items:
     - com.github.tchx84.Flatseal
     - com.spotify.Client
-    - com.skype.Client
     - io.dbeaver.DBeaverCommunity
     - com.axosoft.GitKraken
     - com.borgbase.Vorta
