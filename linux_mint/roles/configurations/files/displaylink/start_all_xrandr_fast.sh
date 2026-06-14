@@ -53,3 +53,4 @@ xrandr --auto 2>&1 | systemd-cat -t xrandr_once_auto
 ### the xrandr calls registered/activated the monitors for Xorg output,
 ### subsequently started lightdm-greeter will show something
 
+
