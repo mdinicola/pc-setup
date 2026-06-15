@@ -1,0 +1,165 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  configurationVersion: 0.2
+  resources:
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: InstallBrave
+      directives:
+        description: Install Brave Browser
+        allowPrerelease: false
+      settings:
+        id: Brave.Brave
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: InstallFirefox
+      directives:
+        description: Install Firefox Browser
+        allowPrerelease: false
+      settings:
+        id: Mozilla.Firefox
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: InstallNotepadPlusPlus
+      directives:
+        description: Ensure Notepad++ is installed and up to date
+        allowPrerelease: false
+      settings:
+        id: Notepad++.Notepad++
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: InstallWindowsTerminal
+      directives:
+        description: Install Windows Terminal
+        allowPrerelease: false
+      settings:
+        id: Microsoft.WindowsTerminal
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: InstallVLC
+      directives:
+        description: Install VLC
+        allowPrerelease: false
+      settings:
+        id: VideoLAN.VLC
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: InstallYtDlp
+      directives:
+        description: Install yt-dlp
+        allowPrerelease: false
+      settings:
+        id: yt-dlp.yt-dlp
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: InstallFFmpeg
+      directives:
+        description: Install FFmpeg
+        allowPrerelease: false
+      settings:
+        id: yt-dlp.FFmpeg
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: Install7zip
+      directives:
+        description: Install 7zip
+        allowPrerelease: false
+      settings:
+        id: 7zip.7zip
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: InstallAdobeReader
+      directives:
+        description: Install AdobeReader
+        allowPrerelease: false
+      settings:
+        id: Adobe.Acrobat.Reader.64-bit
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: InstallWinDirStat
+      directives:
+        description: Install WinDirStat
+        allowPrerelease: false
+      settings:
+        id: WinDirStat.WinDirStat
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: InstallFlameshot
+      directives:
+        description: Install Flameshot Screenshot Tool
+        allowPrerelease: false
+      settings:
+        id: Flameshot.Flameshot
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: InstallMicrosoftTeams
+      directives:
+        description: Install Microsoft Teams
+        allowPrerelease: false
+      settings:
+        id: Microsoft.Teams
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: InstallMicrosoftTeams
+      directives:
+        description: Install Microsoft Teams
+        allowPrerelease: false
+      settings:
+        id: Microsoft.Teams
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: InstallCaprine
+      directives:
+        description: Install Caprine Facebook Messenger
+        allowPrerelease: false
+      settings:
+        id: Caprine.Caprine
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: InstallBrotheriPrintScan
+      directives:
+        description: Install Brother iPrintScan
+        allowPrerelease: false
+      settings:
+        id: Brother.iPrintScan
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: InstallCalibre
+      directives:
+        description: Install Calibre
+        allowPrerelease: false
+      settings:
+        id: calibre.calibre
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: InstallSpotify
+      directives:
+        description: Install Spotify
+        allowPrerelease: false
+      settings:
+        id: Spotify.Spotify
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: InstallShotcut
+      directives:
+        description: Install Shotcut
+        allowPrerelease: false
+      settings:
+        id: Meltytech.Shotcut
+        source: winget

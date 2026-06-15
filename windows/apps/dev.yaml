@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  configurationVersion: 0.2
+  resources:
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: InstallOpenTofu
+      directives:
+        description: Install OpenTofu
+        allowPrerelease: false
+      settings:
+        id: OpenTofu.Tofu
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: InstallAwsCli
+      directives:
+        description: Install AWS CLI
+        allowPrerelease: false
+      settings:
+        id: Amazon.AWSCLI
+        source: winget

@@ -1,0 +1,39 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  configurationVersion: 0.2
+  resources:
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: InstallAwsSamCli
+      directives:
+        description: Install AWS SAM CLI
+        allowPrerelease: false
+      settings:
+        id: Amazon.SAM-CLI
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: InstallDocker
+      directives:
+        description: Install Docker
+        allowPrerelease: false
+      settings:
+        id: Docker.DockerDesktop
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: InstallDBeaver
+      directives:
+        description: Install DBeaver
+        allowPrerelease: false
+      settings:
+        id: DBeaver.DBeaver.Community
+        source: winget
+
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: InstallLocalStack
+      directives:
+        description: Install LocalStack
+        allowPrerelease: false
+      settings:
+        id: LocalStack.localstack-cli
+        source: winget
