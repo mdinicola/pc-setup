@@ -1,0 +1,243 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  configurationVersion: 0.2
+  resources:
+    - resource: PSDscResources/Registry
+      id: DisableBraveRewards
+      directives:
+        description: Disable Brave Rewards
+        securityContext: elevated
+      settings:
+        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
+        ValueName: 'BraveRewardsDisabled'
+        ValueType: 'Dword'
+        ValueData: '1'
+        Ensure: 'Present'
+
+    - resource: PSDscResources/Registry
+      id: DisableBraveWallet
+      directives:
+        description: Disable Brave Wallet
+        securityContext: elevated
+      settings:
+        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
+        ValueName: 'BraveWalletDisabled'
+        ValueType: 'Dword'
+        ValueData: '1'
+        Ensure: 'Present'
+
+    - resource: PSDscResources/Registry
+      id: DisableBraveNews
+      directives:
+        description: Disable Brave News
+        securityContext: elevated
+      settings:
+        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
+        ValueName: 'BraveNewsDisabled'
+        ValueType: 'Dword'
+        ValueData: '1'
+        Ensure: 'Present'
+
+    - resource: PSDscResources/Registry
+      id: DisableBraveTalk
+      directives:
+        description: Disable Brave Talk
+        securityContext: elevated
+      settings:
+        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
+        ValueName: 'BraveTalkDisabled'
+        ValueType: 'Dword'
+        ValueData: '1'
+        Ensure: 'Present'
+
+    - resource: PSDscResources/Registry
+      id: DisableBraveWaybackMachine
+      directives:
+        description: Disable Brave WaybackMachine
+        securityContext: elevated
+      settings:
+        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
+        ValueName: 'BraveWaybackMachineEnabled'
+        ValueType: 'Dword'
+        ValueData: '0'
+        Ensure: 'Present'
+
+    - resource: PSDscResources/Registry
+      id: DisableBraveP3ATelemetry
+      directives:
+        description: Disable Brave P3A Telemetry
+        securityContext: elevated
+      settings:
+        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
+        ValueName: 'BraveP3AEnabled'
+        ValueType: 'Dword'
+        ValueData: '0'
+        Ensure: 'Present'
+
+    - resource: PSDscResources/Registry
+      id: DisableBraveStatsPing
+      directives:
+        description: Disable Brave Stats Ping
+        securityContext: elevated
+      settings:
+        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
+        ValueName: 'BraveStatsPingEnabled'
+        ValueType: 'Dword'
+        ValueData: '0'
+        Ensure: 'Present'
+
+    - resource: PSDscResources/Registry
+      id: DisableBraveDataCollection
+      directives:
+        description: Disable Brave Data Collection
+        securityContext: elevated
+      settings:
+        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
+        ValueName: 'UrlKeyedAnonymizedDataCollectionEnabled'
+        ValueType: 'Dword'
+        ValueData: '0'
+        Ensure: 'Present'
+
+    - resource: PSDscResources/Registry
+      id: DisableBraveExtendedReporting
+      directives:
+        description: Disable Brave Extended Reporting
+        securityContext: elevated
+      settings:
+        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
+        ValueName: 'SafeBrowsingExtendedReportingEnabled'
+        ValueType: 'Dword'
+        ValueData: '0'
+        Ensure: 'Present'
+
+    - resource: PSDscResources/Registry
+      id: DisableBraveMetricsReporting
+      directives:
+        description: Disable Brave MetricsReporting
+        securityContext: elevated
+      settings:
+        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
+        ValueName: 'MetricsReportingEnabled'
+        ValueType: 'Dword'
+        ValueData: '0'
+        Ensure: 'Present'
+
+    - resource: PSDscResources/Registry
+      id: DisableBraveWebDiscovery
+      directives:
+        description: Disable Brave Web Discovery
+        securityContext: elevated
+      settings:
+        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
+        ValueName: 'BraveWebDiscoveryEnabled'
+        ValueType: 'Dword'
+        ValueData: '0'
+        Ensure: 'Present'
+
+    - resource: PSDscResources/Registry
+      id: DisableBraveAIChat
+      directives:
+        description: Disable Brave AI Chat
+        securityContext: elevated
+      settings:
+        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
+        ValueName: 'BraveAIChatEnabled'
+        ValueType: 'Dword'
+        ValueData: '0'
+        Ensure: 'Present'
+
+    - resource: PSDscResources/Registry
+      id: DisableBraveVPN
+      directives:
+        description: Disable Brave VPN
+        securityContext: elevated
+      settings:
+        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
+        ValueName: 'BraveVPNDisabled'
+        ValueType: 'Dword'
+        ValueData: '1'
+        Ensure: 'Present'
+
+    - resource: PSDscResources/Registry
+      id: DisableBraveTor
+      directives:
+        description: Disable Brave Tor
+        securityContext: elevated
+      settings:
+        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
+        ValueName: 'TorDisabled'
+        ValueType: 'Dword'
+        ValueData: '1'
+        Ensure: 'Present'
+
+    - resource: PSDscResources/Registry
+      id: DisableBraveSpeedreader
+      directives:
+        description: Disable Brave Speedreader
+        securityContext: elevated
+      settings:
+        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
+        ValueName: 'BraveSpeedreaderEnabled'
+        ValueType: 'Dword'
+        ValueData: '0'
+        Ensure: 'Present'
+
+    - resource: PSDscResources/Registry
+      id: DisableBravePasswordManager
+      directives:
+        description: Disable Brave Password Manager
+        securityContext: elevated
+      settings:
+        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
+        ValueName: 'PasswordManagerEnabled'
+        ValueType: 'Dword'
+        ValueData: '0'
+        Ensure: 'Present'
+
+    - resource: PSDscResources/Registry
+      id: DisableBravePasswordManagerPasskeys
+      directives:
+        description: Disable Brave Password Manager Passkeys
+        securityContext: elevated
+      settings:
+        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
+        ValueName: 'PasswordManagerPasskeysEnabled'
+        ValueType: 'Dword'
+        ValueData: '0'
+        Ensure: 'Present'
+
+    - resource: PSDscResources/Registry
+      id: DisableBraveAutoplay
+      directives:
+        description: Disable Brave Password Manager
+        securityContext: elevated
+      settings:
+        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
+        ValueName: 'AutoplayAllowed'
+        ValueType: 'Dword'
+        ValueData: '0'
+        Ensure: 'Present'
+
+    - resource: PSDscResources/Registry
+      id: DisableBraveAutofillAddress
+      directives:
+        description: Disable Brave Address Autofill
+        securityContext: elevated
+      settings:
+        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
+        ValueName: 'AutofillAddressEnabled'
+        ValueType: 'Dword'
+        ValueData: '0'
+        Ensure: 'Present'
+
+    - resource: PSDscResources/Registry
+      id: DisableBraveAutofillCreditCard
+      directives:
+        description: Disable Brave CreditCard Autofill
+        securityContext: elevated
+      settings:
+        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
+        ValueName: 'AutofillCreditCardEnabled'
+        ValueType: 'Dword'
+        ValueData: '0'
+        Ensure: 'Present'
