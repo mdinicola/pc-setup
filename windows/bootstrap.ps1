@@ -9,22 +9,30 @@ $steps = @(
     @{
         Name = "Installing Apps"
         Tags = @("apps")
-        File = "configs\apps\apps.yaml"
+        Action = {
+            Invoke-WingetConfigure -File "configs\apps\apps.yaml" -DryRun:$DryRun
+        }
     },
     @{
         Name = "Installing Dev Apps"
         Tags = @("dev")
-        File = "configs\apps\dev.yaml"
+        Action = {
+            Invoke-WingetConfigure -File "configs\apps\dev.yaml" -DryRun:$DryRun
+        }
     },
     @{
         Name = "Installing Dev Apps (Optional)"
         Tags = @("dev-optional")
-        File = "configs\apps\dev_optional.yaml"
+        Action = {
+            Invoke-WingetConfigure -File "configs\apps\dev_optional.yaml" -DryRun:$DryRun
+        }
     },
     @{
         Name = "Configure Brave Settings"
         Tags = @("brave", "settings")
-        File = "configs\settings\brave_browser.yaml"
+        Action = {
+            Invoke-WingetConfigure -File "configs\settings\brave_browser.yaml" -DryRun:$DryRun
+        }
     }
 )
 
@@ -84,7 +92,5 @@ $selectedSteps = @(
 )
 
 foreach ($step in $selectedSteps) {
-    Invoke-Step $step.Name {
-        Invoke-WingetConfigure -File $step.File -DryRun:$DryRun
-    }
+    Invoke-Step $step.Name $step.Action
 }
