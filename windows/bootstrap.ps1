@@ -5,7 +5,7 @@ param(
 
 . "$PSScriptRoot\functions.ps1"
 
-$steps = @(
+$tasks = @(
     @{
         Name = "Installing Apps"
         Tags = @("apps")
@@ -36,4 +36,4 @@ $steps = @(
     }
 )
 
-Invoke-TaggedSteps -Steps $steps -Tags $Tags -DryRun:$DryRun
+Invoke-TaggedTasks -Tasks $tasks -Tags $Tags -DryRun:$DryRun

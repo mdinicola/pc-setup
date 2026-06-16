@@ -10,7 +10,7 @@ function Write-Section {
     Write-Host ""
 }
 
-function Invoke-Step {
+function Invoke-Task {
     param(
         [string]$Name,
         [scriptblock]$Action
@@ -43,14 +43,14 @@ function Get-NormalizedTags {
     )
 }
 
-function Get-StepTags {
+function Get-TaskTags {
     param(
         [Parameter(Mandatory)]
-        [array]$Steps
+        [array]$Tasks
     )
 
     @(
-        $Steps | ForEach-Object {
+        $Tasks | ForEach-Object {
             $_.Tags
         } | ForEach-Object {
             $_.ToLowerInvariant()
@@ -58,30 +58,30 @@ function Get-StepTags {
     )
 }
 
-function Get-SelectedSteps {
+function Get-SelectedTasks {
     param(
         [Parameter(Mandatory)]
-        [array]$Steps,
+        [array]$Tasks,
 
         [string[]]$Tags
     )
 
     if (-not $Tags) {
-        return @($Steps)
+        return @($Tasks)
     }
 
     @(
-        $Steps | Where-Object {
-            $stepTags = @($_.Tags | ForEach-Object { $_.ToLowerInvariant() })
-            @($stepTags | Where-Object { $_ -in $Tags }).Count -gt 0
+        $Tasks | Where-Object {
+            $taskTags = @($_.Tags | ForEach-Object { $_.ToLowerInvariant() })
+            @($taskTags | Where-Object { $_ -in $Tags }).Count -gt 0
         }
     )
 }
 
-function Invoke-TaggedSteps {
+function Invoke-TaggedTasks {
     param(
         [Parameter(Mandatory)]
-        [array]$Steps,
+        [array]$Tasks,
 
         [string[]]$Tags,
 
@@ -89,7 +89,7 @@ function Invoke-TaggedSteps {
     )
 
     $requestedTags = Get-NormalizedTags -Tags $Tags
-    $knownTags = Get-StepTags -Steps $Steps
+    $knownTags = Get-TaskTags -Tasks $Tasks
     $unknownTags = @(
         $requestedTags | Where-Object {
             $_ -notin $knownTags
@@ -112,13 +112,13 @@ function Invoke-TaggedSteps {
         Write-Host "Running tags: $($requestedTags -join ', ')"
     }
     else {
-        Write-Host "Running all steps"
+        Write-Host "Running all tasks"
     }
 
-    $selectedSteps = Get-SelectedSteps -Steps $Steps -Tags $requestedTags
+    $selectedTasks = Get-SelectedTasks -Tasks $Tasks -Tags $requestedTags
 
-    foreach ($step in $selectedSteps) {
-        Invoke-Step $step.Name $step.Action
+    foreach ($task in $selectedTasks) {
+        Invoke-Task $task.Name $task.Action
     }
 }
 
