@@ -8,32 +8,41 @@ param(
 $tasks = @(
     @{
         Name = "Installing Apps"
-        Tags = @("apps")
+        Tags = @("apps-main")
         Action = {
             Invoke-WingetConfigure -File "configs\apps\apps.yaml" -DryRun:$DryRun
         }
     },
     @{
         Name = "Installing Dev Apps"
-        Tags = @("dev")
+        Tags = @("apps-dev")
         Action = {
             Invoke-WingetConfigure -File "configs\apps\dev.yaml" -DryRun:$DryRun
         }
     },
     @{
         Name = "Installing Dev Apps (Optional)"
-        Tags = @("dev-optional")
+        Tags = @("apps-dev-optional")
         Action = {
             Invoke-WingetConfigure -File "configs\apps\dev_optional.yaml" -DryRun:$DryRun
         }
     },
     @{
         Name = "Configure Brave Settings"
-        Tags = @("brave", "settings")
+        Tags = @("brave")
         Action = {
             Invoke-WingetConfigure -File "configs\settings\brave_browser.yaml" -DryRun:$DryRun
         }
     }
 )
 
-Invoke-TaggedTasks -Tasks $tasks -Tags $Tags -DryRun:$DryRun
+$tagAliases = @{
+    "all" = @("apps-main", "apps-dev", "apps-dev-optional", "brave-browser")
+    "apps" = @("apps-main", "apps-dev")
+    "dev" = @("apps-dev")
+    "dev-full" = @("apps-dev", "apps-dev-optional")
+    "browser" = @("brave-browser")
+    "settings" = @("brave-browser")
+}
+
+Invoke-TaggedTasks -Tasks $tasks -Tags $Tags -TagAliases $tagAliases -DryRun:$DryRun
