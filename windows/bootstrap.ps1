@@ -39,6 +39,7 @@ $tasks = @(
 $tagAliases = @{
     "all" = @("apps-main", "apps-dev", "apps-dev-optional", "brave-browser")
     "apps" = @("apps-main", "apps-dev")
+    "apps-full" = @("apps-main", "apps-dev", "apps-dev-optional")
     "dev" = @("apps-dev")
     "dev-full" = @("apps-dev", "apps-dev-optional")
     "browser" = @("brave-browser")

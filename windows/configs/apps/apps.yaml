@@ -1,165 +1,159 @@
-# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
-properties:
-  configurationVersion: 0.2
-  resources:
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: InstallBrave
-      directives:
-        description: Install Brave Browser
-        allowPrerelease: false
-      settings:
-        id: Brave.Brave
-        source: winget
+# yaml-language-server: $schema=https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/08/config/document.json
+$schema: https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/08/config/document.json
+metadata:
+  winget:
+    processor:
+      identifier: dscv3
+resources:
+  - type: Microsoft.WinGet/Package
+    name: InstallBrave
+    metadata:
+      winget:
+        securityContext: elevated
+    properties:
+      id: Brave.Brave
+      source: winget
 
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: InstallFirefox
-      directives:
-        description: Install Firefox Browser
-        allowPrerelease: false
-      settings:
-        id: Mozilla.Firefox
-        source: winget
+  - type: Microsoft.WinGet/Package
+    name: InstallFirefox
+    metadata:
+      winget:
+        securityContext: elevated
+    properties:
+      id: Mozilla.Firefox
+      source: winget
 
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: InstallNotepadPlusPlus
-      directives:
-        description: Ensure Notepad++ is installed and up to date
-        allowPrerelease: false
-      settings:
-        id: Notepad++.Notepad++
-        source: winget
+  - type: Microsoft.WinGet/Package
+    name: InstallNotepadPlusPlus
+    metadata:
+      winget:
+        securityContext: elevated
+    properties:
+      id: Notepad++.Notepad++
+      source: winget
 
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: InstallWindowsTerminal
-      directives:
-        description: Install Windows Terminal
-        allowPrerelease: false
-      settings:
-        id: Microsoft.WindowsTerminal
-        source: winget
+  - type: Microsoft.WinGet/Package
+    name: InstallWindowsTerminal
+    metadata:
+      winget:
+        securityContext: elevated
+    properties:
+      id: Microsoft.WindowsTerminal
+      source: winget
 
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: InstallVLC
-      directives:
-        description: Install VLC
-        allowPrerelease: false
-      settings:
-        id: VideoLAN.VLC
-        source: winget
+  - type: Microsoft.WinGet/Package
+    name: InstallVLC
+    metadata:
+      winget:
+        securityContext: elevated
+    properties:
+      id: VideoLAN.VLC
+      source: winget
 
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: InstallYtDlp
-      directives:
-        description: Install yt-dlp
-        allowPrerelease: false
-      settings:
-        id: yt-dlp.yt-dlp
-        source: winget
+  - type: Microsoft.WinGet/Package
+    name: InstallYtDlp
+    metadata:
+      winget:
+        securityContext: elevated
+    properties:
+      id: yt-dlp.yt-dlp
+      source: winget
 
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: InstallFFmpeg
-      directives:
-        description: Install FFmpeg
-        allowPrerelease: false
-      settings:
-        id: yt-dlp.FFmpeg
-        source: winget
+  - type: Microsoft.WinGet/Package
+    name: InstallFFmpeg
+    metadata:
+      winget:
+        securityContext: elevated
+    properties:
+      id: yt-dlp.FFmpeg
+      source: winget
 
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: Install7zip
-      directives:
-        description: Install 7zip
-        allowPrerelease: false
-      settings:
-        id: 7zip.7zip
-        source: winget
+  - type: Microsoft.WinGet/Package
+    name: Install7zip
+    metadata:
+      winget:
+        securityContext: elevated
+    properties:
+      id: 7zip.7zip
+      source: winget
 
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: InstallAdobeReader
-      directives:
-        description: Install AdobeReader
-        allowPrerelease: false
-      settings:
-        id: Adobe.Acrobat.Reader.64-bit
-        source: winget
+  - type: Microsoft.WinGet/Package
+    name: InstallAdobeReader
+    metadata:
+      winget:
+        securityContext: elevated
+    properties:
+      id: Adobe.Acrobat.Reader.64-bit
+      source: winget
 
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: InstallWinDirStat
-      directives:
-        description: Install WinDirStat
-        allowPrerelease: false
-      settings:
-        id: WinDirStat.WinDirStat
-        source: winget
+  - type: Microsoft.WinGet/Package
+    name: InstallWinDirStat
+    metadata:
+      winget:
+        securityContext: elevated
+    properties:
+      id: WinDirStat.WinDirStat
+      source: winget
 
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: InstallFlameshot
-      directives:
-        description: Install Flameshot Screenshot Tool
-        allowPrerelease: false
-      settings:
-        id: Flameshot.Flameshot
-        source: winget
+  - type: Microsoft.WinGet/Package
+    name: InstallFlameshot
+    metadata:
+      winget:
+        securityContext: elevated
+    properties:
+      id: Flameshot.Flameshot
+      source: winget
 
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: InstallMicrosoftTeams
-      directives:
-        description: Install Microsoft Teams
-        allowPrerelease: false
-      settings:
-        id: Microsoft.Teams
-        source: winget
+  - type: Microsoft.WinGet/Package
+    name: InstallMicrosoftTeams
+    metadata:
+      winget:
+        securityContext: elevated
+    properties:
+      id: Microsoft.Teams
+      source: winget
 
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: InstallMicrosoftTeams
-      directives:
-        description: Install Microsoft Teams
-        allowPrerelease: false
-      settings:
-        id: Microsoft.Teams
-        source: winget
+  - type: Microsoft.WinGet/Package
+    name: InstallCaprine
+    metadata:
+      winget:
+        securityContext: elevated
+    properties:
+      id: Caprine.Caprine
+      source: winget
 
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: InstallCaprine
-      directives:
-        description: Install Caprine Facebook Messenger
-        allowPrerelease: false
-      settings:
-        id: Caprine.Caprine
-        source: winget
+  - type: Microsoft.WinGet/Package
+    name: InstallBrotheriPrintScan
+    metadata:
+      winget:
+        securityContext: elevated
+    properties:
+      id: Brother.iPrintScan
+      source: winget
 
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: InstallBrotheriPrintScan
-      directives:
-        description: Install Brother iPrintScan
-        allowPrerelease: false
-      settings:
-        id: Brother.iPrintScan
-        source: winget
+  - type: Microsoft.WinGet/Package
+    name: InstallCalibre
+    metadata:
+      winget:
+        securityContext: elevated
+    properties:
+      id: calibre.calibre
+      source: winget
 
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: InstallCalibre
-      directives:
-        description: Install Calibre
-        allowPrerelease: false
-      settings:
-        id: calibre.calibre
-        source: winget
+  - type: Microsoft.WinGet/Package
+    name: InstallSpotify
+    metadata:
+      winget:
+        securityContext: elevated
+    properties:
+      id: Spotify.Spotify
+      source: winget
 
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: InstallSpotify
-      directives:
-        description: Install Spotify
-        allowPrerelease: false
-      settings:
-        id: Spotify.Spotify
-        source: winget
-
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      id: InstallShotcut
-      directives:
-        description: Install Shotcut
-        allowPrerelease: false
-      settings:
-        id: Meltytech.Shotcut
-        source: winget
+  - type: Microsoft.WinGet/Package
+    name: InstallShotcut
+    metadata:
+      winget:
+        securityContext: elevated
+    properties:
+      id: Meltytech.Shotcut
+      source: winget

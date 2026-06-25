@@ -1,243 +1,246 @@
-# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
-properties:
-  configurationVersion: 0.2
-  resources:
-    - resource: PSDscResources/Registry
-      id: DisableBraveRewards
-      directives:
-        description: Disable Brave Rewards
+# yaml-language-server: $schema=https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/08/config/document.json
+$schema: https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/08/config/document.json
+metadata:
+  winget:
+    processor:
+      identifier: dscv3
+resources:
+  - type: Microsoft.Windows/Registry
+    name: DisableBraveRewards
+    metadata:
+      winget:
         securityContext: elevated
-      settings:
-        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
-        ValueName: 'BraveRewardsDisabled'
-        ValueType: 'Dword'
-        ValueData: '1'
-        Ensure: 'Present'
+    properties:
+      keyPath: 'HKLM\Software\Policies\BraveSoftware\Brave'
+      valueName: 'BraveRewardsDisabled'
+      valueData:
+        DWord: 1
+      _exist: true
 
-    - resource: PSDscResources/Registry
-      id: DisableBraveWallet
-      directives:
-        description: Disable Brave Wallet
+  - type: Microsoft.Windows/Registry
+    name: DisableBraveWallet
+    metadata:
+      winget:
         securityContext: elevated
-      settings:
-        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
-        ValueName: 'BraveWalletDisabled'
-        ValueType: 'Dword'
-        ValueData: '1'
-        Ensure: 'Present'
+    properties:
+      keyPath: 'HKLM\Software\Policies\BraveSoftware\Brave'
+      valueName: 'BraveWalletDisabled'
+      valueData:
+        DWord: 1
+      _exist: true
 
-    - resource: PSDscResources/Registry
-      id: DisableBraveNews
-      directives:
-        description: Disable Brave News
+  - type: Microsoft.Windows/Registry
+    name: DisableBraveNews
+    metadata:
+      winget:
         securityContext: elevated
-      settings:
-        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
-        ValueName: 'BraveNewsDisabled'
-        ValueType: 'Dword'
-        ValueData: '1'
-        Ensure: 'Present'
+    properties:
+      keyPath: 'HKLM\Software\Policies\BraveSoftware\Brave'
+      valueName: 'BraveNewsDisabled'
+      valueData:
+        DWord: 1
+      _exist: true
 
-    - resource: PSDscResources/Registry
-      id: DisableBraveTalk
-      directives:
-        description: Disable Brave Talk
+  - type: Microsoft.Windows/Registry
+    name: DisableBraveTalk
+    metadata:
+      winget:
         securityContext: elevated
-      settings:
-        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
-        ValueName: 'BraveTalkDisabled'
-        ValueType: 'Dword'
-        ValueData: '1'
-        Ensure: 'Present'
+    properties:
+      keyPath: 'HKLM\Software\Policies\BraveSoftware\Brave'
+      valueName: 'BraveTalkDisabled'
+      valueData:
+        DWord: 1
+      _exist: true
 
-    - resource: PSDscResources/Registry
-      id: DisableBraveWaybackMachine
-      directives:
-        description: Disable Brave WaybackMachine
+  - type: Microsoft.Windows/Registry
+    name: DisableBraveWaybackMachine
+    metadata:
+      winget:
         securityContext: elevated
-      settings:
-        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
-        ValueName: 'BraveWaybackMachineEnabled'
-        ValueType: 'Dword'
-        ValueData: '0'
-        Ensure: 'Present'
+    properties:
+      keyPath: 'HKLM\Software\Policies\BraveSoftware\Brave'
+      valueName: 'BraveWaybackMachineEnabled'
+      valueData:
+        DWord: 0
+      _exist: true
 
-    - resource: PSDscResources/Registry
-      id: DisableBraveP3ATelemetry
-      directives:
-        description: Disable Brave P3A Telemetry
+  - type: Microsoft.Windows/Registry
+    name: DisableBraveP3ATelemetry
+    metadata:
+      winget:
         securityContext: elevated
-      settings:
-        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
-        ValueName: 'BraveP3AEnabled'
-        ValueType: 'Dword'
-        ValueData: '0'
-        Ensure: 'Present'
+    properties:
+      keyPath: 'HKLM\Software\Policies\BraveSoftware\Brave'
+      valueName: 'BraveP3AEnabled'
+      valueData:
+        DWord: 0
+      _exist: true
 
-    - resource: PSDscResources/Registry
-      id: DisableBraveStatsPing
-      directives:
-        description: Disable Brave Stats Ping
+  - type: Microsoft.Windows/Registry
+    name: DisableBraveStatsPing
+    metadata:
+      winget:
         securityContext: elevated
-      settings:
-        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
-        ValueName: 'BraveStatsPingEnabled'
-        ValueType: 'Dword'
-        ValueData: '0'
-        Ensure: 'Present'
+    properties:
+      keyPath: 'HKLM\Software\Policies\BraveSoftware\Brave'
+      valueName: 'BraveStatsPingEnabled'
+      valueData:
+        DWord: 0
+      _exist: true
 
-    - resource: PSDscResources/Registry
-      id: DisableBraveDataCollection
-      directives:
-        description: Disable Brave Data Collection
+  - type: Microsoft.Windows/Registry
+    name: DisableBraveDataCollection
+    metadata:
+      winget:
         securityContext: elevated
-      settings:
-        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
-        ValueName: 'UrlKeyedAnonymizedDataCollectionEnabled'
-        ValueType: 'Dword'
-        ValueData: '0'
-        Ensure: 'Present'
+    properties:
+      keyPath: 'HKLM\Software\Policies\BraveSoftware\Brave'
+      valueName: 'UrlKeyedAnonymizedDataCollectionEnabled'
+      valueData:
+        DWord: 0
+      _exist: true
 
-    - resource: PSDscResources/Registry
-      id: DisableBraveExtendedReporting
-      directives:
-        description: Disable Brave Extended Reporting
+  - type: Microsoft.Windows/Registry
+    name: DisableBraveExtendedReporting
+    metadata:
+      winget:
         securityContext: elevated
-      settings:
-        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
-        ValueName: 'SafeBrowsingExtendedReportingEnabled'
-        ValueType: 'Dword'
-        ValueData: '0'
-        Ensure: 'Present'
+    properties:
+      keyPath: 'HKLM\Software\Policies\BraveSoftware\Brave'
+      valueName: 'SafeBrowsingExtendedReportingEnabled'
+      valueData:
+        DWord: 0
+      _exist: true
 
-    - resource: PSDscResources/Registry
-      id: DisableBraveMetricsReporting
-      directives:
-        description: Disable Brave MetricsReporting
+  - type: Microsoft.Windows/Registry
+    name: DisableBraveMetricsReporting
+    metadata:
+      winget:
         securityContext: elevated
-      settings:
-        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
-        ValueName: 'MetricsReportingEnabled'
-        ValueType: 'Dword'
-        ValueData: '0'
-        Ensure: 'Present'
+    properties:
+      keyPath: 'HKLM\Software\Policies\BraveSoftware\Brave'
+      valueName: 'MetricsReportingEnabled'
+      valueData:
+        DWord: 0
+      _exist: true
 
-    - resource: PSDscResources/Registry
-      id: DisableBraveWebDiscovery
-      directives:
-        description: Disable Brave Web Discovery
+  - type: Microsoft.Windows/Registry
+    name: DisableBraveWebDiscovery
+    metadata:
+      winget:
         securityContext: elevated
-      settings:
-        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
-        ValueName: 'BraveWebDiscoveryEnabled'
-        ValueType: 'Dword'
-        ValueData: '0'
-        Ensure: 'Present'
+    properties:
+      keyPath: 'HKLM\Software\Policies\BraveSoftware\Brave'
+      valueName: 'BraveWebDiscoveryEnabled'
+      valueData:
+        DWord: 0
+      _exist: true
 
-    - resource: PSDscResources/Registry
-      id: DisableBraveAIChat
-      directives:
-        description: Disable Brave AI Chat
+  - type: Microsoft.Windows/Registry
+    name: DisableBraveAIChat
+    metadata:
+      winget:
         securityContext: elevated
-      settings:
-        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
-        ValueName: 'BraveAIChatEnabled'
-        ValueType: 'Dword'
-        ValueData: '0'
-        Ensure: 'Present'
+    properties:
+      keyPath: 'HKLM\Software\Policies\BraveSoftware\Brave'
+      valueName: 'BraveAIChatEnabled'
+      valueData:
+        DWord: 0
+      _exist: true
 
-    - resource: PSDscResources/Registry
-      id: DisableBraveVPN
-      directives:
-        description: Disable Brave VPN
+  - type: Microsoft.Windows/Registry
+    name: DisableBraveVPN
+    metadata:
+      winget:
         securityContext: elevated
-      settings:
-        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
-        ValueName: 'BraveVPNDisabled'
-        ValueType: 'Dword'
-        ValueData: '1'
-        Ensure: 'Present'
+    properties:
+      keyPath: 'HKLM\Software\Policies\BraveSoftware\Brave'
+      valueName: 'BraveVPNDisabled'
+      valueData:
+        DWord: 1
+      _exist: true
 
-    - resource: PSDscResources/Registry
-      id: DisableBraveTor
-      directives:
-        description: Disable Brave Tor
+  - type: Microsoft.Windows/Registry
+    name: DisableBraveTor
+    metadata:
+      winget:
         securityContext: elevated
-      settings:
-        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
-        ValueName: 'TorDisabled'
-        ValueType: 'Dword'
-        ValueData: '1'
-        Ensure: 'Present'
+    properties:
+      keyPath: 'HKLM\Software\Policies\BraveSoftware\Brave'
+      valueName: 'TorDisabled'
+      valueData:
+        DWord: 1
+      _exist: true
 
-    - resource: PSDscResources/Registry
-      id: DisableBraveSpeedreader
-      directives:
-        description: Disable Brave Speedreader
+  - type: Microsoft.Windows/Registry
+    name: DisableBraveSpeedreader
+    metadata:
+      winget:
         securityContext: elevated
-      settings:
-        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
-        ValueName: 'BraveSpeedreaderEnabled'
-        ValueType: 'Dword'
-        ValueData: '0'
-        Ensure: 'Present'
+    properties:
+      keyPath: 'HKLM\Software\Policies\BraveSoftware\Brave'
+      valueName: 'BraveSpeedreaderEnabled'
+      valueData:
+        DWord: 0
+      _exist: true
 
-    - resource: PSDscResources/Registry
-      id: DisableBravePasswordManager
-      directives:
-        description: Disable Brave Password Manager
+  - type: Microsoft.Windows/Registry
+    name: DisableBravePasswordManager
+    metadata:
+      winget:
         securityContext: elevated
-      settings:
-        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
-        ValueName: 'PasswordManagerEnabled'
-        ValueType: 'Dword'
-        ValueData: '0'
-        Ensure: 'Present'
+    properties:
+      keyPath: 'HKLM\Software\Policies\BraveSoftware\Brave'
+      valueName: 'PasswordManagerEnabled'
+      valueData:
+        DWord: 0
+      _exist: true
 
-    - resource: PSDscResources/Registry
-      id: DisableBravePasswordManagerPasskeys
-      directives:
-        description: Disable Brave Password Manager Passkeys
+  - type: Microsoft.Windows/Registry
+    name: DisableBravePasswordManagerPasskeys
+    metadata:
+      winget:
         securityContext: elevated
-      settings:
-        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
-        ValueName: 'PasswordManagerPasskeysEnabled'
-        ValueType: 'Dword'
-        ValueData: '0'
-        Ensure: 'Present'
+    properties:
+      keyPath: 'HKLM\Software\Policies\BraveSoftware\Brave'
+      valueName: 'PasswordManagerPasskeysEnabled'
+      valueData:
+        DWord: 0
+      _exist: true
 
-    - resource: PSDscResources/Registry
-      id: DisableBraveAutoplay
-      directives:
-        description: Disable Brave Password Manager
+  - type: Microsoft.Windows/Registry
+    name: DisableBraveAutoplay
+    metadata:
+      winget:
         securityContext: elevated
-      settings:
-        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
-        ValueName: 'AutoplayAllowed'
-        ValueType: 'Dword'
-        ValueData: '0'
-        Ensure: 'Present'
+    properties:
+      keyPath: 'HKLM\Software\Policies\BraveSoftware\Brave'
+      valueName: 'AutoplayAllowed'
+      valueData:
+        DWord: 0
+      _exist: true
 
-    - resource: PSDscResources/Registry
-      id: DisableBraveAutofillAddress
-      directives:
-        description: Disable Brave Address Autofill
+  - type: Microsoft.Windows/Registry
+    name: DisableBraveAutofillAddress
+    metadata:
+      winget:
         securityContext: elevated
-      settings:
-        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
-        ValueName: 'AutofillAddressEnabled'
-        ValueType: 'Dword'
-        ValueData: '0'
-        Ensure: 'Present'
+    properties:
+      keyPath: 'HKLM\Software\Policies\BraveSoftware\Brave'
+      valueName: 'AutofillAddressEnabled'
+      valueData:
+        DWord: 0
+      _exist: true
 
-    - resource: PSDscResources/Registry
-      id: DisableBraveAutofillCreditCard
-      directives:
-        description: Disable Brave CreditCard Autofill
+  - type: Microsoft.Windows/Registry
+    name: DisableBraveAutofillCreditCard
+    metadata:
+      winget:
         securityContext: elevated
-      settings:
-        Key: 'HKEY_LOCAL_MACHINE\Software\Policies\BraveSoftware\Brave'
-        ValueName: 'AutofillCreditCardEnabled'
-        ValueType: 'Dword'
-        ValueData: '0'
-        Ensure: 'Present'
+    properties:
+      keyPath: 'HKLM\Software\Policies\BraveSoftware\Brave'
+      valueName: 'AutofillCreditCardEnabled'
+      valueData:
+        DWord: 0
+      _exist: true
