@@ -114,15 +114,6 @@ resources:
       source: winget
 
   - type: Microsoft.WinGet/Package
-    name: InstallCaprine
-    metadata:
-      winget:
-        securityContext: elevated
-    properties:
-      id: Caprine.Caprine
-      source: winget
-
-  - type: Microsoft.WinGet/Package
     name: InstallBrotheriPrintScan
     metadata:
       winget:
