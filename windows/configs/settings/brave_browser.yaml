@@ -210,18 +210,6 @@ resources:
       _exist: true
 
   - type: Microsoft.Windows/Registry
-    name: DisableBraveAutoplay
-    metadata:
-      winget:
-        securityContext: elevated
-    properties:
-      keyPath: 'HKLM\Software\Policies\BraveSoftware\Brave'
-      valueName: 'AutoplayAllowed'
-      valueData:
-        DWord: 0
-      _exist: true
-
-  - type: Microsoft.Windows/Registry
     name: DisableBraveAutofillAddress
     metadata:
       winget:
