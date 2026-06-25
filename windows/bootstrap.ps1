@@ -29,7 +29,7 @@ $tasks = @(
     },
     @{
         Name = "Configure Brave Settings"
-        Tags = @("brave")
+        Tags = @("brave-browser")
         Action = {
             Invoke-WingetConfigure -File "configs\settings\brave_browser.yaml" -DryRun:$DryRun
         }
