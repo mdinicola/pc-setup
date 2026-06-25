@@ -191,11 +191,15 @@ function Invoke-WingetConfigure {
     if ($DryRun) {
         $args += "test"
     }
+    else {
+        $args += @(
+            "--nowarn"
+        )
+    }
 
     $args += @(
         "--file", $File,
         "--accept-configuration-agreements",
-        "--nowarn",
         "--disable-interactivity"
     )
 
