@@ -13,6 +13,7 @@ resources:
     properties:
       id: Amazon.SAM-CLI
       source: winget
+      _exist: true
 
   - type: Microsoft.WinGet/Package
     name: InstallDocker
@@ -22,6 +23,7 @@ resources:
     properties:
       id: Docker.DockerDesktop
       source: winget
+      _exist: true
 
   - type: Microsoft.WinGet/Package
     name: InstallDBeaver
@@ -31,6 +33,7 @@ resources:
     properties:
       id: DBeaver.DBeaver.Community
       source: winget
+      _exist: true
 
   - type: Microsoft.WinGet/Package
     name: InstallLocalStack
@@ -40,3 +43,4 @@ resources:
     properties:
       id: LocalStack.localstack-cli
       source: winget
+      _exist: true

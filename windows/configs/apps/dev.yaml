@@ -13,6 +13,7 @@ resources:
     properties:
       id: OpenTofu.Tofu
       source: winget
+      _exist: true
 
   - type: Microsoft.WinGet/Package
     name: InstallAwsCli
@@ -22,3 +23,4 @@ resources:
     properties:
       id: Amazon.AWSCLI
       source: winget
+      _exist: true

@@ -13,6 +13,7 @@ resources:
     properties:
       id: Brave.Brave
       source: winget
+      _exist: true
 
   - type: Microsoft.WinGet/Package
     name: InstallFirefox
@@ -22,6 +23,7 @@ resources:
     properties:
       id: Mozilla.Firefox
       source: winget
+      _exist: true
 
   - type: Microsoft.WinGet/Package
     name: InstallNotepadPlusPlus
@@ -31,6 +33,7 @@ resources:
     properties:
       id: Notepad++.Notepad++
       source: winget
+      _exist: true
 
   - type: Microsoft.WinGet/Package
     name: InstallWindowsTerminal
@@ -40,6 +43,7 @@ resources:
     properties:
       id: Microsoft.WindowsTerminal
       source: winget
+      _exist: true
 
   - type: Microsoft.WinGet/Package
     name: InstallVLC
@@ -49,6 +53,7 @@ resources:
     properties:
       id: VideoLAN.VLC
       source: winget
+      _exist: true
 
   - type: Microsoft.WinGet/Package
     name: InstallYtDlp
@@ -58,6 +63,7 @@ resources:
     properties:
       id: yt-dlp.yt-dlp
       source: winget
+      _exist: true
 
   - type: Microsoft.WinGet/Package
     name: InstallFFmpeg
@@ -67,6 +73,7 @@ resources:
     properties:
       id: yt-dlp.FFmpeg
       source: winget
+      _exist: true
 
   - type: Microsoft.WinGet/Package
     name: Install7zip
@@ -76,6 +83,7 @@ resources:
     properties:
       id: 7zip.7zip
       source: winget
+      _exist: true
 
   - type: Microsoft.WinGet/Package
     name: InstallAdobeReader
@@ -85,6 +93,7 @@ resources:
     properties:
       id: Adobe.Acrobat.Reader.64-bit
       source: winget
+      _exist: true
 
   - type: Microsoft.WinGet/Package
     name: InstallWinDirStat
@@ -94,6 +103,7 @@ resources:
     properties:
       id: WinDirStat.WinDirStat
       source: winget
+      _exist: true
 
   - type: Microsoft.WinGet/Package
     name: InstallFlameshot
@@ -103,6 +113,7 @@ resources:
     properties:
       id: Flameshot.Flameshot
       source: winget
+      _exist: true
 
   - type: Microsoft.WinGet/Package
     name: InstallMicrosoftTeams
@@ -112,6 +123,7 @@ resources:
     properties:
       id: Microsoft.Teams
       source: winget
+      _exist: true
 
   - type: Microsoft.WinGet/Package
     name: InstallBrotheriPrintScan
@@ -121,6 +133,7 @@ resources:
     properties:
       id: Brother.iPrintScan
       source: winget
+      _exist: true
 
   - type: Microsoft.WinGet/Package
     name: InstallCalibre
@@ -130,6 +143,7 @@ resources:
     properties:
       id: calibre.calibre
       source: winget
+      _exist: true
 
   - type: Microsoft.WinGet/Package
     name: InstallSpotify
@@ -139,6 +153,7 @@ resources:
     properties:
       id: Spotify.Spotify
       source: winget
+      _exist: true
 
   - type: Microsoft.WinGet/Package
     name: InstallShotcut
@@ -148,3 +163,4 @@ resources:
     properties:
       id: Meltytech.Shotcut
       source: winget
+      _exist: true
