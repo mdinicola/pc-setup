@@ -23,3 +23,7 @@
 - name: Install Packages
   ansible.builtin.include_tasks: 
     file: packages.yml
+
+- name: Install Docker
+  ansible.builtin.include_tasks: 
+    file: docker.yml
