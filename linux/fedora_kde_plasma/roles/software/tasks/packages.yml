@@ -1,0 +1,62 @@
+---
+- name: Install common packages
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - ca-certificates
+    - cifs-utils
+    - curl
+    - git
+    - xz
+    - gnupg2
+
+- name: Install rpm fusion packages
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    allowerasing: yes
+    state: present
+  with_items:
+    - ffmpeg
+
+- name: Install dnf applications
+  ansible.builtin.dnf:
+    name: "{{ item }}"  
+    state: present
+  with_items:
+    - brave-origin
+    # - notepadqq
+    - code # VS Code
+    # - vlc
+    - qdirstat
+    # - flameshot
+
+- name: Install flatpak applications
+  community.general.flatpak:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    # - com.github.tchx84.Flatseal
+    - com.spotify.Client
+    - io.dbeaver.DBeaverCommunity
+    # - com.axosoft.GitKraken
+    # - com.borgbase.Vorta
+    # - com.sindresorhus.Caprine
+
+- name: Install development tools
+  ansible.builtin.dnf:
+    name: "{{ item }}"  
+    state: present
+  with_items:
+    - jq
+
+- name: Install docker
+  ansible.builtin.dnf:
+    name: "{{ item }}"  
+    state: present
+  with_items:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+    - docker-buildx-plugin
+    - docker-compose-plugin

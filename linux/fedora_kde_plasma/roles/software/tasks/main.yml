@@ -1,0 +1,25 @@
+---
+- name: Uninstall default packages
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: absent
+    autoremove: true
+  with_items:
+    - "@libreoffice"
+    - libreoffice*
+
+- name: Enable RPM Fusion
+  ansible.builtin.dnf:
+    name:
+      - "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm"
+      - "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm"
+    disable_gpg_check: false
+    state: present
+
+- name: Add RPM repositories
+  ansible.builtin.include_tasks: 
+    file: repositories.yml
+
+- name: Install Packages
+  ansible.builtin.include_tasks: 
+    file: packages.yml

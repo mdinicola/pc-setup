@@ -1,0 +1,7 @@
+---
+- name: Install ansible galaxy modules
+  ansible.builtin.shell: ansible-galaxy collection install -U {{ item }}
+  register: install_module_result
+  changed_when: "'is already installed, skipping' not in install_module_result.stdout"
+  with_items:
+    - community.general
