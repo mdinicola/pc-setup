@@ -29,7 +29,15 @@
     - code # VS Code
     # - vlc
     - qdirstat
+    - kate
     # - flameshot
+
+- name: Install development tools
+  ansible.builtin.dnf:
+    name: "{{ item }}"  
+    state: present
+  with_items:
+    - jq
 
 - name: Install flatpak applications
   community.general.flatpak:
@@ -42,13 +50,6 @@
     # - com.axosoft.GitKraken
     # - com.borgbase.Vorta
     # - com.sindresorhus.Caprine
-
-- name: Install development tools
-  ansible.builtin.dnf:
-    name: "{{ item }}"  
-    state: present
-  with_items:
-    - jq
 
 - name: Install docker
   ansible.builtin.dnf:
