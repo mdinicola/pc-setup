@@ -25,15 +25,14 @@
     state: present
   with_items:
     - brave-origin
-    # - notepadqq
     - code # VS Code
-    # - vlc
+    - vlc
     - qdirstat
     - kate
     - sourcegit
     - jq
     - mise
-    # - flameshot
+    - flameshot
 
 - name: Install flatpak applications
   community.general.flatpak:
@@ -43,6 +42,5 @@
     # - com.github.tchx84.Flatseal
     - com.spotify.Client
     - io.dbeaver.DBeaverCommunity
-    # - com.axosoft.GitKraken
+    - com.usebruno.Bruno
     # - com.borgbase.Vorta
-    # - com.sindresorhus.Caprine
