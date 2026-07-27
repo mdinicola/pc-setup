@@ -27,3 +27,7 @@
 - name: Install Docker
   ansible.builtin.include_tasks: 
     file: docker.yml
+
+- name: Configure Mise
+  ansible.builtin.include_tasks: 
+    file: mise.yml

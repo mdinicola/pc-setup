@@ -1,0 +1,12 @@
+# ~/.config/mise/config.toml
+
+[tools]
+node = "lts"
+uv = "latest"
+opentofu = "1.12"
+aws-cli = "latest"
+aws-sam-cli = "latest"
+"npm:@openai/codex" = "latest"
+
+dbmate = "latest"
+supabase = "latest"

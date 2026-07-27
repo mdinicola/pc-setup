@@ -38,6 +38,7 @@
     state: present
   with_items:
     - jq
+    - mise
 
 - name: Install flatpak applications
   community.general.flatpak:
