@@ -4,7 +4,7 @@
     name: "{{ item }}"
     state: absent
     autoremove: true
-  with_items:
+  loop:
     - "@libreoffice"
     - libreoffice*
 

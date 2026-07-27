@@ -3,7 +3,7 @@
   ansible.builtin.dnf:
     name: "{{ item }}"
     state: present
-  with_items:
+  loop:
     - ca-certificates
     - cifs-utils
     - curl
@@ -16,14 +16,14 @@
     name: "{{ item }}"
     allowerasing: yes
     state: present
-  with_items:
+  loop:
     - ffmpeg
 
 - name: Install applications and tools
   ansible.builtin.dnf:
     name: "{{ item }}"  
     state: present
-  with_items:
+  loop:
     - brave-origin
     - code # VS Code
     - vlc
@@ -38,7 +38,7 @@
   community.general.flatpak:
     name: "{{ item }}"
     state: present
-  with_items:
+  loop:
     # - com.github.tchx84.Flatseal
     - com.spotify.Client
     - io.dbeaver.DBeaverCommunity
