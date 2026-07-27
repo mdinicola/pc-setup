@@ -35,3 +35,13 @@
   community.general.copr:
     name: jdxcode/mise
     state: enabled
+
+- name: Add SourceGit repository
+  ansible.builtin.yum_repository:
+    name: gitea-yataro
+    description: yataro - Codeberg.org
+    baseurl: https://codeberg.org/api/packages/yataro/rpm
+    gpgcheck: false # sourcegit package is not signed
+    gpgkey: https://codeberg.org/api/packages/yataro/rpm/repository.key
+    file: sourcegit
+    enabled: true

@@ -19,7 +19,7 @@
   with_items:
     - ffmpeg
 
-- name: Install dnf applications
+- name: Install applications and tools
   ansible.builtin.dnf:
     name: "{{ item }}"  
     state: present
@@ -30,15 +30,10 @@
     # - vlc
     - qdirstat
     - kate
-    # - flameshot
-
-- name: Install development tools
-  ansible.builtin.dnf:
-    name: "{{ item }}"  
-    state: present
-  with_items:
+    - sourcegit
     - jq
     - mise
+    # - flameshot
 
 - name: Install flatpak applications
   community.general.flatpak:
