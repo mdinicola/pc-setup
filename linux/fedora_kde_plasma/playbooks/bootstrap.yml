@@ -5,3 +5,8 @@
     - role: ../roles/software
       tags:
         - software
+
+    - role: ../roles/configs
+      tags:
+        - configs
+        - configuration

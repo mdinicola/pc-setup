@@ -1,0 +1,14 @@
+---
+- name: Set dolphin configurations
+  community.general.kdeconfig:
+    path: ~/.config/dolphinrc
+    values:
+      - group: ContentDisplay
+        key: UseShortRelativeDates # show dates
+        bool_value: false
+      - group: General
+        key: BrowseThroughArchives # browse zip archives without extracting
+        bool_value: true
+      - group: InformationPanel
+        key: dateFormat # use short date format
+        value: ShortFormat
