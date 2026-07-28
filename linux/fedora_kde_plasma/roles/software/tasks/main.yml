@@ -24,7 +24,11 @@
 - name: Add RPM repositories
   ansible.builtin.include_tasks: 
     file: repositories.yml
-  become: yes
+    apply:
+      become: yes
+      tags:
+        - packages
+        - apps
   tags:
     - packages
     - apps
@@ -32,7 +36,11 @@
 - name: Install Packages
   ansible.builtin.include_tasks: 
     file: packages.yml
-  become: yes
+    apply:
+      become: yes
+      tags:
+        - packages
+        - apps
   tags:
     - packages
     - apps
@@ -40,13 +48,20 @@
 - name: Install Docker
   ansible.builtin.include_tasks: 
     file: docker.yml
-  become: yes
+    apply:
+      become: yes
+      tags:
+        - docker
   tags:
     - docker
 
 - name: Install Mise
   ansible.builtin.include_tasks: 
     file: mise.yml
+    apply:
+      tags:
+        - mise
+        - tools
   tags:
     - mise
     - tools
