@@ -1,6 +1,7 @@
 ---
 - name: Bootstrap Fedora KDE Plasma Workstation
   hosts: localhost
-  become: yes
   roles:
-    - ../roles/software
+    - role: ../roles/software
+      tags:
+        - software

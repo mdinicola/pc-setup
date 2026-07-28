@@ -4,6 +4,7 @@
     name: "{{ item }}"
     state: absent
     autoremove: true
+  become: yes
   loop:
     - "@libreoffice"
     - libreoffice*
@@ -15,19 +16,37 @@
       - "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_facts['distribution_major_version'] }}.noarch.rpm"
     disable_gpg_check: false
     state: present
+  become: yes
+  tags:
+    - packages
+    - apps
 
 - name: Add RPM repositories
   ansible.builtin.include_tasks: 
     file: repositories.yml
+  become: yes
+  tags:
+    - packages
+    - apps
 
 - name: Install Packages
   ansible.builtin.include_tasks: 
     file: packages.yml
+  become: yes
+  tags:
+    - packages
+    - apps
 
 - name: Install Docker
   ansible.builtin.include_tasks: 
     file: docker.yml
+  become: yes
+  tags:
+    - docker
 
-- name: Configure Mise
+- name: Install Mise
   ansible.builtin.include_tasks: 
     file: mise.yml
+  tags:
+    - mise
+    - tools
