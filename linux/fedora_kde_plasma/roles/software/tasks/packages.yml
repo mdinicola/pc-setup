@@ -31,7 +31,6 @@
     - kate
     - sourcegit
     - jq
-    - mise
     - flameshot
 
 - name: Install flatpak applications

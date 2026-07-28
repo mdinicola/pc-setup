@@ -1,16 +1,28 @@
 ---
+- name: Enable mise copr repository
+  community.general.copr:
+    name: jdxcode/mise
+    state: enabled
+  become: yes
+
+- name: Install mise
+  ansible.builtin.dnf:
+    name: "{{ item }}"  
+    state: present
+  become: yes
+  loop:
+    - mise
+
 - name: Create mise config path
   ansible.builtin.file: 
     path: ~/.config/mise
     state: directory
-  become: no
 
 - name: Write global mise config file
   ansible.builtin.copy:
     src: mise.global.toml
     dest: ~/.config/mise/config.toml
     mode: '0644'
-  become: no
 
 - name: Add mise activation to .bashrc
   ansible.builtin.lineinfile:
@@ -18,4 +30,3 @@
     line: 'eval "$(mise activate bash)"'
     create: true
     mode: '0644'
-  become: no

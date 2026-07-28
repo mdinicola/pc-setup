@@ -31,11 +31,6 @@
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
     state: present
 
-- name: Enable mise copr repository
-  community.general.copr:
-    name: jdxcode/mise
-    state: enabled
-
 - name: Add SourceGit repository
   ansible.builtin.yum_repository:
     name: gitea-yataro
