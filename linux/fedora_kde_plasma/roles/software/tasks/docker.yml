@@ -15,3 +15,9 @@
     name: "{{ ansible_facts['user_id'] }}"
     groups: docker
     append: true
+
+- name: Enable and start Docker
+  ansible.builtin.systemd:
+    name: docker
+    enabled: true
+    state: started
