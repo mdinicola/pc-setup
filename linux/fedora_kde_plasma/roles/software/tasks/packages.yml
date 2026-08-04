@@ -12,7 +12,7 @@
     - gnupg2
     - nmap
     - skanpage
-    - kopia-ui
+    - jq
 
 - name: Install rpm fusion packages
   ansible.builtin.dnf:
@@ -41,8 +41,8 @@
     - qdirstat
     - kate
     - sourcegit
-    - jq
     - flameshot
+    - kopia-ui
 
 - name: Install flatpak applications
   community.general.flatpak:
