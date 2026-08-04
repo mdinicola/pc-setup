@@ -55,3 +55,14 @@
   tags:
     - mise
     - tools
+
+- name: Configure OpenTofu
+  ansible.builtin.include_tasks: 
+    file: opentofu.yml
+    apply:
+      tags:
+        - opentofu
+        - tools
+  tags:
+    - opentofu
+    - tools
