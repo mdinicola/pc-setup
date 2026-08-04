@@ -1,6 +1,7 @@
 # ~/.config/mise/config.toml
 
 [tools]
+python = "latest"
 node = "lts"
 uv = "latest"
 opentofu = "1.12"
