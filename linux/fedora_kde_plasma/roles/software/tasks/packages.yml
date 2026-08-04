@@ -49,8 +49,6 @@
     name: "{{ item }}"
     state: present
   loop:
-    # - com.github.tchx84.Flatseal
-    - com.spotify.Client
+    - com.github.tchx84.Flatseal
     - io.dbeaver.DBeaverCommunity
     - com.usebruno.Bruno
-    # - com.borgbase.Vorta
