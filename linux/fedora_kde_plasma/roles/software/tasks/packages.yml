@@ -12,6 +12,7 @@
     - gnupg2
     - nmap
     - skanpage
+    - kopia-ui
 
 - name: Install rpm fusion packages
   ansible.builtin.dnf:

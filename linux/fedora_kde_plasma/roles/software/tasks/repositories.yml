@@ -40,3 +40,14 @@
     gpgkey: https://codeberg.org/api/packages/yataro/rpm/repository.key
     file: sourcegit
     enabled: true
+
+- name: Add Kopia repository
+  ansible.builtin.yum_repository:
+    name: Kopia
+    description: Kopia
+    baseurl: http://packages.kopia.io/rpm/stable/$basearch/
+    gpgcheck: true
+    gpgkey: https://kopia.io/signing-key
+    file: kopia
+    enabled: true
+
