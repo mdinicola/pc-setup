@@ -49,7 +49,6 @@ These are some of the applications, tools, and configurations I find helpful on 
 - Brave Browser (Windows)
 - Brave Origin (Linux)
 - VLC
-- Spotify
 - VS Code
 - Flameshot
 - Bruno
@@ -59,7 +58,8 @@ These are some of the applications, tools, and configurations I find helpful on 
 - WinDirStat (Windows)
 - notepaddqq (Linux GNOME)
 - kate (Linux KDE Plasma)
-- qdir state (Linux)
+- qdirstat (Linux)
+- Kopia (Linux)
 
 ## Tools and Languages
 
