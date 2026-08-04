@@ -22,6 +22,14 @@
   loop:
     - ffmpeg
 
+- name: Update dnf groups to latest
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: latest
+  loop:
+    - "@multimedia"
+    - "@core"
+
 - name: Install applications and tools
   ansible.builtin.dnf:
     name: "{{ item }}"  
