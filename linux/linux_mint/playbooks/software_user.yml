@@ -1,6 +1,0 @@
----
-- name: Install Software
-  hosts: localhost
-  become: yes
-  roles:
-    - ../roles/software_user

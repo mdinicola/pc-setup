@@ -1,5 +1,0 @@
----
-- name: Update configurations for user
-  hosts: localhost
-  roles:
-    - ../roles/configurations_user
