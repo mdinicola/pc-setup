@@ -19,12 +19,6 @@
     file: vscode
     enabled: true
 
-- name: Add Docker repository
-  ansible.builtin.get_url:
-    url: https://download.docker.com/linux/fedora/docker-ce.repo
-    dest: /etc/yum.repos.d/docker-ce.repo
-    mode: '0644'
-
 - name: Add Flathub repository
   community.general.flatpak_remote:
     name: flathub
