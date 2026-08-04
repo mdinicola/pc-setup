@@ -1,14 +1,4 @@
 ---
-- name: Uninstall default packages
-  ansible.builtin.dnf:
-    name: "{{ item }}"
-    state: absent
-    autoremove: true
-  become: yes
-  loop:
-    - "@libreoffice"
-    - libreoffice*
-
 - name: Enable RPM Fusion
   ansible.builtin.dnf:
     name:
