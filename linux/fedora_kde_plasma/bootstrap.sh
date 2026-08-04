@@ -2,14 +2,16 @@
 
 set -euo pipefail
 
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+
 sudo dnf install -y ansible-core
 
-ansible-playbook -i inventory.yml playbooks/ansible_galaxy.yml
-ansible-playbook -i inventory.yml playbooks/bootstrap.yml --ask-become-pass
+ansible-playbook -i "$SCRIPT_DIR/inventory.yml" "$SCRIPT_DIR/playbooks/ansible_galaxy.yml"
+ansible-playbook -i "$SCRIPT_DIR/inventory.yml" "$SCRIPT_DIR/playbooks/bootstrap.yml" --ask-become-pass
 
 # Load profile
 set +u
-source ~/.bashrc
+source $HOME/.bashrc
 set -u
 
 # Install development tools

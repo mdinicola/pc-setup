@@ -15,18 +15,17 @@
 
 - name: Create mise config path
   ansible.builtin.file:
-    path: ~/.config/mise
+    path: "{{ ansible_facts['env']['HOME'] }}/.config/mise"
     state: directory
 
 - name: Write global mise config file
   ansible.builtin.copy:
     src: "{{ playbook_dir }}/../../../common/mise/mise.global.toml"
-    dest: ~/.config/mise/config.toml
+    dest: "{{ ansible_facts['env']['HOME'] }}/.config/mise/config.toml"
     mode: '0644'
 
 - name: Add mise activation to .bashrc
   ansible.builtin.lineinfile:
-    path: "~/.bashrc"
+    path: "{{ ansible_facts['env']['HOME'] }}/.bashrc"
     line: 'eval "$(mise activate bash)"'
-    create: true
-    mode: '0644'
+    state: present
