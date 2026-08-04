@@ -1,0 +1,25 @@
+---
+- name: Set clipboard configurations
+  community.general.kdeconfig:
+    path: "{{ ansible_facts['env']['HOME'] }}/.config/klipperrc"
+    values:
+      - group: General
+        key: KeepClipboardContents # disable clipboard history
+        bool_value: false
+      - group: General
+        key: SelectionTextOnly # Only save text selections in history when explicitly copied
+        bool_value: false
+  tags:
+    - clipboard
+    - klipper
+
+- name: Set dolphin configurations
+  community.general.kdeconfig:
+    path: "{{ ansible_facts['env']['HOME'] }}/.config/dolphinrc"
+    values:
+      - group: General
+        key: BrowseThroughArchives # browse zip archives without extracting
+        bool_value: true
+  tags:
+    - dolphin
+    - file_explorer

@@ -6,7 +6,6 @@
       tags:
         - software
 
-    - role: ../roles/configs
+    - role: ../roles/configuration
       tags:
-        - configs
         - configuration
