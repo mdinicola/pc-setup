@@ -1,0 +1,21 @@
+---
+- name: Set firewall configuration
+  ansible.builtin.include_tasks: 
+    file: firewall.yml
+    apply:
+      become: yes
+      tags:
+        - firewall
+        - ufw
+  tags:
+    - firewall
+    - ufw
+
+- name: Disable welcome page
+  community.general.dconf:
+    key: "/com/linuxmint/updates/show-welcome-page"
+    value: "false"
+    state: present
+  tags:
+    - welcome_page
+    - system_configuration
