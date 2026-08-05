@@ -1,0 +1,41 @@
+---
+- name: Add mise PPA
+  ansible.builtin.deb822_repository:
+    name: mise
+    types: [deb]
+    uris: https://ppa.launchpadcontent.net/jdxcode/mise/ubuntu
+    signed_by: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x38A097C0CCE691795E4B15BE23997D3EEE1EDC52
+    suites: ["{{ ubuntu_codename | lower }}"]
+    components: [main]
+    state: present
+    enabled: yes
+  become: yes
+  notify:
+    - Update APT cache
+
+- meta: flush_handlers
+
+- name: Install mise
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  become: yes
+  loop:
+    - mise
+
+- name: Create mise config path
+  ansible.builtin.file:
+    path: "{{ ansible_facts['env']['HOME'] }}/.config/mise"
+    state: directory
+
+- name: Write global mise config file
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/../../../common/mise/mise.global.toml"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.config/mise/config.toml"
+    mode: '0644'
+
+- name: Add mise activation to .bashrc
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_facts['env']['HOME'] }}/.bashrc"
+    line: 'eval "$(mise activate bash)"'
+    state: present

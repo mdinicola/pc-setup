@@ -8,26 +8,81 @@
     name: "{{ item }}"
     state: absent
     purge: true
-  with_items:
-    - libreoffice*
-    - hexchat
-    - celluloid
-    - hypnotix
-    - rhythmbox
+  become: yes
+  loop:
     - thunderbird
+  tags:
+    - packages
+    - apps
 
 - name: Clean APT
   ansible.builtin.apt:
     clean: yes
+  become: yes
+  tags:
+    - packages
+    - apps
 
 - name: Autoremove APT
   ansible.builtin.apt:
     autoremove: yes
+  become: yes
+  tags:
+    - packages
+    - apps
 
 - name: Add APT repositories
   ansible.builtin.include_tasks: 
     file: repositories.yml
+    apply:
+      become: yes
+      tags:
+        - packages
+        - apps
+  tags:
+    - packages
+    - apps
 
 - name: Install Packages
   ansible.builtin.include_tasks: 
     file: packages.yml
+    apply:
+      become: yes
+      tags:
+        - packages
+        - apps
+  tags:
+    - packages
+    - apps
+
+- name: Install Docker
+  ansible.builtin.include_tasks: 
+    file: docker.yml
+    apply:
+      become: yes
+      tags:
+        - docker
+  tags:
+    - docker
+
+- name: Install Mise
+  ansible.builtin.include_tasks: 
+    file: mise.yml
+    apply:
+      tags:
+        - mise
+        - tools
+  tags:
+    - mise
+    - tools
+
+- name: Configure OpenTofu
+  ansible.builtin.include_tasks: 
+    file: opentofu.yml
+    apply:
+      tags:
+        - opentofu
+        - tools
+  tags:
+    - opentofu
+    - tools
