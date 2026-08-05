@@ -1,5 +1,5 @@
 ---
-- name: Bootstrap Fedora KDE Plasma Workstation
+- name: Bootstrap Linux Mint Workstation
   hosts: localhost
   roles:
     - role: ../roles/software
