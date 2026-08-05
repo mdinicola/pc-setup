@@ -15,4 +15,3 @@ ansible-playbook -i "$SCRIPT_DIR/inventory.yml" "$SCRIPT_DIR/playbooks/bootstrap
 
 # Install development tools
 mise install
-export PATH="$HOME/.local/share/mise/shims:$PATH"
