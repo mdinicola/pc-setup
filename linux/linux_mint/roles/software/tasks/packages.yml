@@ -8,7 +8,7 @@
     - ca-certificates
     - cifs-utils
     - curl
-    - xserver-xorg-input-synaptics
+    - extrepo
     - xz-utils
     - gnupg
     - software-properties-common

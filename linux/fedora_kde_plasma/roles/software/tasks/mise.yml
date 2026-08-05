@@ -7,11 +7,9 @@
 
 - name: Install mise
   ansible.builtin.dnf:
-    name: "{{ item }}"
+    name: mise
     state: present
   become: yes
-  loop:
-    - mise
 
 - name: Create mise config path
   ansible.builtin.file:
