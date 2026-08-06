@@ -1,12 +1,22 @@
 ---
-- name: Add Docker repository
-  ansible.builtin.get_url:
-    url: https://download.docker.com/linux/fedora/docker-ce.repo
-    dest: /etc/yum.repos.d/docker-ce.repo
-    mode: '0644'
+- name: Add Docker Module Repository
+  ansible.builtin.deb822_repository:
+    name: docker
+    types: [deb]
+    uris: "https://download.docker.com/linux/ubuntu"
+    signed_by: "https://download.docker.com/linux/ubuntu/gpg"
+    architectures: amd64
+    suites: ["{{ ubuntu_codename | lower }}"]
+    components: [stable]
+    state: present
+    enabled: yes
+  notify:
+    - Update APT cache
+
+- meta: flush_handlers
 
 - name: Install docker engine
-  ansible.builtin.dnf:
+  ansible.builtin.apt:
     name: "{{ item }}"  
     state: present
   loop:

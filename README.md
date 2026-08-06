@@ -56,14 +56,14 @@ These are some of the applications, tools, and configurations I find helpful on 
 - Docker Engine
 - Notepad++ (Windows)
 - WinDirStat (Windows)
-- notepaddqq (Linux GNOME)
-- kate (Linux KDE Plasma)
+- kate (Linux KDE)
 - qdirstat (Linux)
 - Kopia (Linux)
 
 ## Tools and Languages
 
 - ffmpeg
+- git
 - jq
 - python
 - node.js

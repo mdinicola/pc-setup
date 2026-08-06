@@ -11,7 +11,13 @@
     - packages
     - apps
 
-- name: Add RPM repositories
+- name: Install dnf plugins core
+  ansible.builtin.dnf:
+    name: dnf-plugins-core
+    state: present
+  become: yes
+
+- name: Add dnf repositories
   ansible.builtin.include_tasks: 
     file: repositories.yml
     apply:

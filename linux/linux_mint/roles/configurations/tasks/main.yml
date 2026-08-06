@@ -1,8 +1,0 @@
----
-- name: Set DisplayLink configuration
-  ansible.builtin.include_tasks: 
-    file: displaylink.yml
-
-- name: Set firewall configuration
-  ansible.builtin.include_tasks: 
-    file: firewall.yml

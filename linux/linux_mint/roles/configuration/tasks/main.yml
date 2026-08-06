@@ -1,0 +1,12 @@
+---
+- name: Set firewall configuration
+  ansible.builtin.include_tasks: 
+    file: firewall.yml
+    apply:
+      become: yes
+      tags:
+        - firewall
+        - ufw
+  tags:
+    - firewall
+    - ufw

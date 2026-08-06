@@ -8,39 +8,27 @@
     - ca-certificates
     - cifs-utils
     - curl
-    - xserver-xorg-input-synaptics
+    - extrepo
     - xz-utils
     - gnupg
     - software-properties-common
-    - nala
     - ffmpeg
-
-- name: Install synaptics-repository-keyring
-  ansible.builtin.apt:
-    deb: https://www.synaptics.com/sites/default/files/Ubuntu/pool/stable/main/all/synaptics-repository-keyring.deb
-  notify:
-    - Update APT cache
-
-- meta: flush_handlers
-
-- name: Install drivers
-  ansible.builtin.apt:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - displaylink-driver
+    - git
+    - jq
 
 - name: Install apt applications
   ansible.builtin.apt:
     name: "{{ item }}"  
     state: present
   with_items:
-    - brave-browser
-    - notepadqq
-    - codium # Visual Studio Code
+    - brave-origin
+    - kate
+    - code # Visual Studio Code
     - vlc
     - qdirstat
     - flameshot
+    - kopia-ui
+    - sourcegit
 
 - name: Install flatpak applications
   community.general.flatpak:
@@ -48,43 +36,4 @@
     state: present
   with_items:
     - com.github.tchx84.Flatseal
-    - com.spotify.Client
     - io.dbeaver.DBeaverCommunity
-    - com.axosoft.GitKraken
-    - com.borgbase.Vorta
-    - com.sindresorhus.Caprine
-
-- name: Install development tools
-  ansible.builtin.apt:
-    name: "{{ item }}"  
-    state: present
-  with_items:
-    - git
-    - python3
-    - python3-pip
-    - apache2
-    - php
-    - libapache2-mod-php
-    - php-mysql
-    - php-xml
-    - php-curl
-    - terraform
-
-- name: Install docker
-  ansible.builtin.apt:
-    name: "{{ item }}"  
-    state: present
-  with_items:
-    - docker-ce
-    - docker-ce-cli
-    - containerd.io
-    - docker-buildx-plugin
-    - docker-compose-plugin
-
-- name: Install AWS CLI
-  mdinicola.aws_tools_linux.aws_cli:
-    state: updated
-
-- name: Install AWS SAM CLI
-  mdinicola.aws_tools_linux.aws_sam_cli:
-    state: updated

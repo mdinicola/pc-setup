@@ -1,0 +1,11 @@
+---
+- name: Bootstrap Linux Mint Workstation
+  hosts: localhost
+  roles:
+    - role: ../roles/software
+      tags:
+        - software
+
+    - role: ../roles/configuration
+      tags:
+        - configuration
