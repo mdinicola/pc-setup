@@ -1,15 +1,11 @@
 ---
 - name: Set dnf settings
-  ansible.builtin.include_tasks: 
+  ansible.builtin.import_tasks: 
     file: dnf_settings.yml
-    apply:
-      become: yes
-      tags:
-        - dnf_settings
   tags:
     - dnf_settings
 
-- name: Set clipboard configurations
+- name: Set clipboard preferences
   community.general.kdeconfig:
     path: "{{ ansible_facts['env']['HOME'] }}/.config/klipperrc"
     values:
@@ -23,7 +19,7 @@
     - clipboard
     - klipper
 
-- name: Set dolphin configurations
+- name: Set dolphin preferences
   community.general.kdeconfig:
     path: "{{ ansible_facts['env']['HOME'] }}/.config/dolphinrc"
     values:
@@ -33,3 +29,15 @@
   tags:
     - dolphin
     - file_explorer
+
+- name: Set git settings
+  ansible.builtin.import_tasks: 
+    file: "{{ playbook_dir }}/../../common/tasks/git_settings.yml"
+  tags:
+    - git_settings
+
+- name: Set vscode settings
+  ansible.builtin.import_tasks: 
+    file: "{{ playbook_dir }}/../../common/tasks/vscode_settings.yml"
+  tags:
+    - vscode

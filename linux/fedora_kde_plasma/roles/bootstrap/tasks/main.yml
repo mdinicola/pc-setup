@@ -18,57 +18,42 @@
   become: yes
 
 - name: Add dnf repositories
-  ansible.builtin.include_tasks: 
+  ansible.builtin.import_tasks: 
     file: repositories.yml
-    apply:
-      become: yes
-      tags:
-        - packages
-        - apps
   tags:
     - packages
     - apps
 
 - name: Install Packages
-  ansible.builtin.include_tasks: 
+  ansible.builtin.import_tasks: 
     file: packages.yml
-    apply:
-      become: yes
-      tags:
-        - packages
-        - apps
   tags:
     - packages
     - apps
 
 - name: Install Docker
-  ansible.builtin.include_tasks: 
+  ansible.builtin.import_tasks: 
     file: docker.yml
-    apply:
-      become: yes
-      tags:
-        - docker
   tags:
     - docker
 
 - name: Install Mise
-  ansible.builtin.include_tasks: 
+  ansible.builtin.import_tasks: 
     file: mise.yml
-    apply:
-      tags:
-        - mise
-        - tools
   tags:
     - mise
     - tools
 
 - name: Configure OpenTofu
-  ansible.builtin.include_tasks: 
-    file: opentofu.yml
-    apply:
-      tags:
-        - opentofu
-        - tools
+  ansible.builtin.import_tasks: 
+    file: "{{ playbook_dir }}/../../common/tasks/opentofu_settings.yml"
   tags:
     - opentofu
     - tools
+
+- name: Configure Settings and Preferences
+  ansible.builtin.import_tasks: 
+    file: settings.yml
+  tags:
+    - settings
+    - preferences

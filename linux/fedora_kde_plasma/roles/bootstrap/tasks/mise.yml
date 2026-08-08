@@ -1,0 +1,16 @@
+---
+- name: Enable mise copr repository
+  community.general.copr:
+    name: jdxcode/mise
+    state: enabled
+  become: yes
+
+- name: Install mise
+  ansible.builtin.dnf:
+    name: mise
+    state: present
+  become: yes
+
+- name: Configure Mise
+  ansible.builtin.import_tasks: 
+    file: "{{ playbook_dir }}/../../common/tasks/mise.yml"

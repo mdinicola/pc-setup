@@ -3,6 +3,7 @@
   ansible.builtin.dnf:
     name: "{{ item }}"
     state: present
+  become: yes
   loop:
     - ca-certificates
     - cifs-utils
@@ -19,6 +20,7 @@
     name: "{{ item }}"
     allowerasing: yes
     state: present
+  become: yes
   loop:
     - ffmpeg
 
@@ -26,6 +28,7 @@
   ansible.builtin.dnf:
     name: "{{ item }}"
     state: latest
+  become: yes
   loop:
     - "@multimedia"
     - "@core"
@@ -34,6 +37,7 @@
   ansible.builtin.dnf:
     name: "{{ item }}"  
     state: present
+  become: yes
   loop:
     - brave-origin
     - code # VS Code
@@ -48,6 +52,7 @@
   community.general.flatpak:
     name: "{{ item }}"
     state: present
+  become: yes
   loop:
     - com.github.tchx84.Flatseal
     - io.dbeaver.DBeaverCommunity

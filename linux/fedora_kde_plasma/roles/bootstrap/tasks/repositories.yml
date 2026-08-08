@@ -4,10 +4,12 @@
     url: https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
     dest: /etc/yum.repos.d/brave-browser.repo
     mode: '0644'
+  become: yes
 
 - name: Import Microsoft GPG key
   ansible.builtin.rpm_key:
     key: https://packages.microsoft.com/keys/microsoft.asc
+  become: yes
 
 - name: Add VS Code repository
   ansible.builtin.yum_repository:
@@ -18,12 +20,14 @@
     gpgkey: https://packages.microsoft.com/keys/microsoft.asc
     file: vscode
     enabled: true
+  become: yes
 
 - name: Add Flathub repository
   community.general.flatpak_remote:
     name: flathub
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
     state: present
+  become: yes
 
 - name: Add SourceGit repository
   ansible.builtin.yum_repository:
@@ -34,6 +38,7 @@
     gpgkey: https://codeberg.org/api/packages/yataro/rpm/repository.key
     file: sourcegit
     enabled: true
+  become: yes
 
 - name: Add Kopia repository
   ansible.builtin.yum_repository:
@@ -44,4 +49,5 @@
     gpgkey: https://kopia.io/signing-key
     file: kopia
     enabled: true
+  become: yes
 
