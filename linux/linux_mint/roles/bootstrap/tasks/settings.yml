@@ -1,0 +1,19 @@
+---
+- name: Set firewall configuration
+  ansible.builtin.import_tasks: 
+    file: firewall.yml
+  tags:
+    - firewall
+    - ufw
+
+- name: Set git settings
+  ansible.builtin.import_tasks: 
+    file: "{{ playbook_dir }}/../../common/tasks/git_settings.yml"
+  tags:
+    - git_settings
+
+- name: Set vscode settings
+  ansible.builtin.import_tasks: 
+    file: "{{ playbook_dir }}/../../common/tasks/vscode_settings.yml"
+  tags:
+    - vscode

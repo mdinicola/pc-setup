@@ -1,8 +1,0 @@
----
-- name: Install pip packages
-  ansible.builtin.pip:
-    name: "{{ item }}"
-    break_system_packages: true
-    state: present
-  with_items:
-    - localstack

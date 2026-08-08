@@ -9,6 +9,7 @@
     components: [main]
     state: present
     enabled: yes
+  become: yes
   notify:
     - Update APT cache
 
@@ -23,6 +24,7 @@
     components: [main]
     state: present
     enabled: yes
+  become: yes
   notify:
     - Update APT cache
 
@@ -36,6 +38,7 @@
     components: [main]
     state: present
     enabled: yes
+  become: yes
   notify:
     - Update APT cache
 
@@ -50,6 +53,7 @@
     components: [main]
     state: present
     enabled: yes
+  become: yes
   notify:
     - Update APT cache  
 

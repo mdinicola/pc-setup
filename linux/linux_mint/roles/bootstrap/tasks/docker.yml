@@ -10,6 +10,7 @@
     components: [stable]
     state: present
     enabled: yes
+  become: yes
   notify:
     - Update APT cache
 
@@ -19,6 +20,7 @@
   ansible.builtin.apt:
     name: "{{ item }}"  
     state: present
+  become: yes
   loop:
     - docker-ce
     - docker-ce-cli
@@ -26,14 +28,6 @@
     - docker-buildx-plugin
     - docker-compose-plugin
 
-- name: Add user to docker group
-  ansible.builtin.user:
-    name: "{{ ansible_facts['user_id'] }}"
-    groups: docker
-    append: true
-
-- name: Enable and start Docker
-  ansible.builtin.systemd:
-    name: docker
-    enabled: true
-    state: started
+- name: Configure Docker
+  ansible.builtin.import_tasks: 
+    file: "{{ playbook_dir }}/../../common/tasks/docker.yml"

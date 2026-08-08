@@ -4,29 +4,35 @@
     rule: limit
     port: '22'
     proto: tcp
+  become: yes
 
 - name: Allow all access to tcp port 80
   community.general.ufw:
     rule: allow
     port: '80'
     proto: tcp
+  become: yes
 
 - name: Allow all access to tcp port 443
   community.general.ufw:
     rule: allow
     port: '443'
     proto: tcp
+  become: yes
 
 - name: Deny default incoming
   community.general.ufw:
     default: deny
     direction: incoming
+  become: yes
 
 - name: Allow default outgoing
   community.general.ufw:
     default: allow
     direction: outgoing
+  become: yes
 
 - name: Enable firewall
   community.general.ufw:
     state: enabled
+  become: yes

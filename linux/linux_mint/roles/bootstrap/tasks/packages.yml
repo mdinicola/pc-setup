@@ -3,7 +3,8 @@
   ansible.builtin.apt:
     name: "{{ item }}"
     state: present
-  with_items:
+  become: yes
+  loop:
     - apt-transport-https
     - ca-certificates
     - cifs-utils
@@ -20,7 +21,8 @@
   ansible.builtin.apt:
     name: "{{ item }}"  
     state: present
-  with_items:
+  become: yes
+  loop:
     - brave-origin
     - kate
     - code # Visual Studio Code
@@ -34,6 +36,7 @@
   community.general.flatpak:
     name: "{{ item }}"
     state: present
-  with_items:
+  become: yes
+  loop:
     - com.github.tchx84.Flatseal
     - io.dbeaver.DBeaverCommunity

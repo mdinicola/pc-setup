@@ -1,0 +1,13 @@
+---
+- name: Ensure VS Code configuration directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts['env']['HOME'] }}/.config/Code/User"
+    state: directory
+    mode: '0755'
+
+- name: Set initial VS Code Settings
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/../../../common/files/vscode_settings.json"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.config/Code/User/settings.json"
+    force: no
+    mode: '0644'
