@@ -21,17 +21,17 @@ $tasks = @(
         }
     },
     @{
-        Name = "Installing Dev Apps"
-        Tags = @("apps-dev")
+        Name = "Install WinGet Apps"
+        Tags = @("apps-winget")
         Action = {
-            Invoke-WingetConfigure -File "configs\apps\dev.yaml" -DryRun:$DryRun
+            Invoke-ElevatedScript -ScriptPath "$scriptsDirectory\install_winget_apps.ps1"
         }
     },
     @{
-        Name = "Installing Dev Apps (Optional)"
-        Tags = @("apps-dev-optional")
+        Name = "Install Scoop Apps"
+        Tags = @("apps-scoop")
         Action = {
-            Invoke-WingetConfigure -File "configs\apps\dev_optional.yaml" -DryRun:$DryRun
+            Invoke-Program -ProgramPath "$scriptsDirectory\install_scoop_apps.ps1"
         }
     },
     @{

@@ -1,0 +1,10 @@
+{
+    "apps": [
+        {
+            "name": "mise"
+        },
+        {
+            "name": "sourcegit"
+        }
+    ]
+}
