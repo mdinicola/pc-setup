@@ -1,16 +1,23 @@
 param(
-    [switch]$DryRun,
     [string[]]$Tags
 )
 
-. "$PSScriptRoot\functions.ps1"
+$ErrorActionPreference = 'Stop'
+$InformationPreference = 'Continue'
+
+. "$PSScriptRoot\functions\logging.ps1"
+. "$PSScriptRoot\functions\tasks.ps1"
+. "$PSScriptRoot\functions\tags.ps1"
+. "$PSScriptRoot\functions\processes.ps1"
+
+$scriptsDirectory = "$PSScriptRoot\scripts"
 
 $tasks = @(
     @{
-        Name = "Installing Apps"
-        Tags = @("apps-main")
+        Name = "Debloat Windows"
+        Tags = @("debloat")
         Action = {
-            Invoke-WingetConfigure -File "configs\apps\apps.yaml" -DryRun:$DryRun
+            Invoke-ElevatedScript -ScriptPath "$scriptsDirectory\debloat.ps1"
         }
     },
     @{
@@ -46,4 +53,4 @@ $tagAliases = @{
     "settings" = @("brave-browser")
 }
 
-Invoke-TaggedTasks -Tasks $tasks -Tags $Tags -TagAliases $tagAliases -DryRun:$DryRun
+Invoke-TaggedTask -Tasks $tasks -Tags $Tags -TagAliases $tagAliases
