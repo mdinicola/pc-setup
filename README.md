@@ -50,7 +50,8 @@ Enter your password when prompted.
 Run from PowerShell:
 
 ```powershell
-winget install Git.Git
+Set-ExecutionPolicy Bypass -Scope Process -Force
+winget install Git.Git --accept-package-agreements --accept-source-agreements
 git clone https://github.com/mdinicola/pc-setup.git
 cd pc-setup/windows
 ./bootstrap.ps1
