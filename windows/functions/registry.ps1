@@ -57,19 +57,19 @@ function Set-RegistryValue {
         $currentRecord.Value -eq $Value -and
         $currentRecord.Type -eq $Type
     ) {
-        Write-Information "Registry key $KeyPath\$KeyName already has value $Value.  Nothing to do"
+        Write-LogMessage "Registry key $KeyPath\$KeyName already has value $Value.  Nothing to do"
         return $false
     }
 
     if ($null -ne $currentRecord) {
-        Write-Information "Changing registry key $KeyPath\$KeyName from $($current.Value) to $Value"
+        Write-LogMessage "Changing registry key $KeyPath\$KeyName from $($current.Value) to $Value"
         Set-ItemProperty `
             -Path $KeyPath `
             -Name $KeyName `
             -Value $Value
     }
     else {
-        Write-Information "Creating registry key $KeyPath\$KeyName with type $Type and value $Value"
+        Write-LogMessage "Creating registry key $KeyPath\$KeyName with type $Type and value $Value"
         New-Item -Path $KeyPath -Force | Out-Null
 
         New-ItemProperty `

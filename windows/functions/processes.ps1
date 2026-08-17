@@ -10,7 +10,24 @@ function Invoke-Program {
     & $ProgramPath @ArgumentList
 
     if ($LASTEXITCODE -ne 0) {
-        throw "'$filePath' failed with exit code $LASTEXITCODE"
+        throw "'$ProgramPath' failed with exit code $LASTEXITCODE"
+    }
+}
+
+function Invoke-Script {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]
+        [string]$ScriptPath,
+
+        [hashtable]$Parameters = @{}
+    )
+
+    try {
+        & $ScriptPath @Parameters
+    }
+    catch {
+        throw "'$ScriptPath' failed: $_"
     }
 }
 
@@ -20,7 +37,7 @@ function Invoke-ElevatedScript {
         [Parameter(Mandatory)]
         [string]$ScriptPath,
 
-        [string[]]$ArgumentList = @()
+        [string[]]$Parameters = @()
     )
 
     $PowerShellExe = if ($PSVersionTable.PSEdition -eq 'Core') {
@@ -30,18 +47,18 @@ function Invoke-ElevatedScript {
         'powershell.exe'
     }
 
-    $processArgumentList = @(
+    $processParameters = @(
         '-NoProfile'
         '-ExecutionPolicy'
         'Bypass'
         '-File'
         "`"$ScriptPath`""
-    ) + $ArgumentList
+    ) + $Parameters
 
     $process = Start-Process `
         -FilePath "$PowerShellExe" `
         -Verb RunAs `
-        -ArgumentList $processArgumentList `
+        -ArgumentList $processParameters `
         -Wait `
         -PassThru
 
@@ -61,7 +78,7 @@ function Invoke-WinUtil {
         Invoke-RestMethod https://christitus.com/win | Invoke-Expression
     }
     else {
-        Write-Information "Running WinUtil with config file: $ConfigFile"
+        Write-LogMessage "Running WinUtil with config file: $ConfigFile"
         & ([ScriptBlock]::Create((Invoke-RestMethod https://christitus.com/win))) -Config "$ConfigFile"
     }
 }

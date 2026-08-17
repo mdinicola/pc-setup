@@ -45,6 +45,6 @@ function Set-EnvironmentVariable {
         [string]$Scope = 'User'
     )
 
-    Write-Information "Setting $Scope environment variable $Name to $Value"
+    Write-LogMessage "Setting $Scope environment variable $Name to $Value"
     [Environment]::SetEnvironmentVariable($Name, $Value, $Scope) | Out-Null
 }

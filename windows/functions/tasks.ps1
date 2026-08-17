@@ -46,7 +46,7 @@ function Invoke-Task {
 
     $sw.Stop()
 
-    Write-Information "Completed in $($sw.Elapsed.ToString('mm\:ss'))"
+    Write-LogMessage "Completed in $($sw.Elapsed.ToString('mm\:ss'))"
 }
 
 function Invoke-TaggedTask {
@@ -89,15 +89,15 @@ function Invoke-TaggedTask {
         exit 1
     }
 
-    Write-Information "Running tags: $($requestedTags -join ', ')"
+    Write-LogMessage "Running tags: $($requestedTags -join ', ')"
 
     if (Compare-Object -ReferenceObject $requestedTags -DifferenceObject $expandedTags) {
-        Write-Information "Expanded tags: $($expandedTags -join ', ')"
+        Write-LogMessage "Expanded tags: $($expandedTags -join ', ')"
     }
 
     $selectedTasks = Get-SelectedTask -Tasks $Tasks -Tags $expandedTags
 
     foreach ($task in $selectedTasks) {
-        Invoke-Task $task.Name $task.Action
+        Invoke-Task -Name "$($task.Name)" -Action $task.Action
     }
 }

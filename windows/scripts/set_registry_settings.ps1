@@ -1,36 +1,45 @@
 #Requires -RunAsAdministrator
 
 param(
-    [string]$ConfigFile = "$PSScriptRoot\..\config\settings\registry.json"
+    [string]$ConfigFile = "$PSScriptRoot\..\config\settings\registry.json",
+    [string]$LogFolder = ""
 )
 
 $ErrorActionPreference = 'Stop'
 $InformationPreference = 'Continue'
 
 . "$PSScriptRoot\..\functions\registry.ps1"
+. "$PSScriptRoot\..\functions\logging.ps1"
 
-$configSettings = Get-Content "$ConfigFile" -Raw | ConvertFrom-Json
+Start-Logging -Name "settings_registry" -LogFolder "$LogFolder"
 
-$restartWindowsExplorer = $false
+try {
+    $configSettings = Get-Content "$ConfigFile" -Raw | ConvertFrom-Json
 
-Write-Information "Applying settings to Windows Registry"
+    $restartWindowsExplorer = $false
 
-foreach ($setting in $configSettings) {
-    $result = Set-RegistryValue `
-        -Description $setting.description `
-        -KeyPath $setting.keyPath `
-        -KeyName $setting.keyName `
-        -Type $setting.type `
-        -Value $setting.value
+    Write-LogMessage "Applying settings to Windows Registry"
 
-    if ($result -eq $true) {
-        $restartWindowsExplorer = $true
+    foreach ($setting in $configSettings) {
+        $result = Set-RegistryValue `
+            -Description $setting.description `
+            -KeyPath $setting.keyPath `
+            -KeyName $setting.keyName `
+            -Type $setting.type `
+            -Value $setting.value
+
+        if ($result -eq $true) {
+            $restartWindowsExplorer = $true
+        }
+    }
+
+    if ($restartWindowsExplorer) {
+        Write-LogMessage "Restarting Windows Explorer"
+        
+        taskkill.exe /F /IM "explorer.exe"
+        Start-Process "explorer.exe"
     }
 }
-
-if ($restartWindowsExplorer) {
-    Write-Information "Restarting Windows Explorer"
-    
-    taskkill.exe /F /IM "explorer.exe"
-    Start-Process "explorer.exe"
+finally {
+    Stop-Logging
 }
