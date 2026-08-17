@@ -8,9 +8,10 @@ function Invoke-Program {
     )
 
     & $ProgramPath @ArgumentList
+    $exitCode = $LASTEXITCODE
 
-    if ($LASTEXITCODE -ne 0) {
-        throw "'$ProgramPath' failed with exit code $LASTEXITCODE"
+    if ($exitCode -ne 0) {
+        throw "'$ProgramPath' failed with exit code $exitCode"
     }
 }
 
