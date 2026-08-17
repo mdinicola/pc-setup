@@ -40,12 +40,14 @@ try {
         exit 1
     }
 
-    Write-LogMessage "Adding extras bucket"
-    Invoke-Program -ErrorAction SilentlyContinue -ProgramPath scoop -ArgumentList @(
-        'bucket'
-        'add'
-        'extras'
-    )
+    if (-not (Test-Path -Path "$HOME\scoop\buckets\extras" -PathType Container)) {
+        Write-LogMessage "Adding extras bucket"
+        Invoke-Program -ProgramPath scoop -ArgumentList @(
+            'bucket'
+            'add'
+            'extras'
+        )
+    }
 
     # Install Scoop Applications
     Write-LogMessage "Installing scoop applications"
