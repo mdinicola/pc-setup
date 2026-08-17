@@ -63,7 +63,7 @@ function Invoke-ElevatedScript {
         -PassThru
 
     if ($process.ExitCode -ne 0) {
-        throw "Elevated script failed with exit code $($process.ExitCode)."
+        throw "$ScriptPath failed with exit code $($process.ExitCode)."
     }
 }
 
