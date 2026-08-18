@@ -1,6 +1,6 @@
 # PC Setup
 
-Bootstrap scripts for configuring a fresh Windows or Linux developer installation with common applications, development tools, and system settings.
+Bootstrap scripts for configuring a fresh Linux or Windows developer installation with common applications, development tools, and system settings.
 
 This repository is intended to make rebuilding a workstation quick and repeatable. It reflects my preferred workstation setup and is not intended to be universal, but rather a starting point.
 
@@ -25,9 +25,13 @@ Clone the repository and run the bootstrap script for your operating system.
 
 ```bash
 sudo dnf install git -y
+
 git clone https://github.com/mdinicola/pc-setup.git
+
 cd pc-setup/linux/fedora_kde_plasma
+
 chmod +x bootstrap.sh
+
 ./bootstrap.sh
 ```
 
@@ -37,9 +41,13 @@ Enter your password when prompted.
 
 ```bash
 sudo apt install git -y
+
 git clone https://github.com/mdinicola/pc-setup.git
+
 cd pc-setup/linux/linux_mint
+
 chmod +x bootstrap.sh
+
 ./bootstrap.sh
 ```
 
@@ -51,10 +59,14 @@ Run from PowerShell:
 
 ```powershell
 Set-ExecutionPolicy Bypass -Scope Process -Force
+
 winget install Git.Git --accept-package-agreements --accept-source-agreements
+
 git clone https://github.com/mdinicola/pc-setup.git
+
 cd pc-setup/windows
-./bootstrap.ps1
+
+.\bootstrap.ps1
 ```
 
 #### Logging
@@ -140,8 +152,8 @@ Examples include:
 
 ### Windows
 
-- Configure Brave preferences
-    - Disable unwanted Brave AI, cryptocurrency, wallet, and telemetry features
+- Debloat Windows
+    - Remove telemetry, AI features
 
 ## Notes
 
