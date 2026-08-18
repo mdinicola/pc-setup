@@ -6,7 +6,7 @@
 
 - name: Write global mise config file
   ansible.builtin.copy:
-    src: "{{ playbook_dir }}/../../../common/files/mise.global.toml"
+    src: "{{ playbook_dir }}/../../common/files/mise.global.toml"
     dest: "{{ ansible_facts['env']['HOME'] }}/.config/mise/config.toml"
     mode: '0644'
 

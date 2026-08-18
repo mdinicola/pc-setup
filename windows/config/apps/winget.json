@@ -64,6 +64,24 @@
 				},
 				{
 					"PackageIdentifier" : "jqlang.jq"
+				},
+				{
+					"PackageIdentifier" : "Python.Python.3.14"
+				},
+				{
+					"PackageIdentifier" : "OpenJS.NodeJS.LTS"
+				},
+				{
+					"PackageIdentifier" : "astral-sh.uv"
+				},
+				{
+					"PackageIdentifier" : "OpenTofu.Tofu"
+				},
+				{
+					"PackageIdentifier" : "Amazon.AWSCLI"
+				},
+				{
+					"PackageIdentifier" : "Amazon.SAM-CLI"
 				}
 			],
 			"SourceDetails" : 

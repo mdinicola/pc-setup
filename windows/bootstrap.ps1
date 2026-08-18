@@ -44,10 +44,10 @@ $tasks = @(
         }
     },
     @{
-        Name = "Install Mise Apps"
-        Tags = @("apps-mise")
+        Name = "Install NPM Apps"
+        Tags = @("apps-npm")
         Action = {
-            Invoke-Script -ScriptPath "$scriptsFolder\install_mise_apps.ps1" -Parameters @{
+            Invoke-Script -ScriptPath "$scriptsFolder\install_npm_apps.ps1" -Parameters @{
                 LogFolder = "$logFolder"
             }
         }
@@ -99,7 +99,7 @@ $tasks = @(
 )
 
 $tagAliases = @{
-    "all" = @("debloat", "settings-registry", "apps-winget", "apps-scoop", "apps-mise",
+    "all" = @("debloat", "settings-registry", "apps-winget", "apps-scoop", "apps-npm",
         "settings-git", "settings-vscode", "settings-opentofu")
     "apps" = @("apps-winget", "apps-scoop", "apps-mise")
     "settings" = @("settings-registry", "settings-git", "settings-vscode", "settings-opentofu")

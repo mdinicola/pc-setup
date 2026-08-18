@@ -40,13 +40,25 @@ try {
         exit 1
     }
 
-    if (-not (Test-Path -Path "$HOME\scoop\buckets\extras" -PathType Container)) {
-        Write-LogMessage "Adding extras bucket"
-        Invoke-Program -ProgramPath scoop -ArgumentList @(
-            'bucket'
-            'add'
-            'extras'
-        )
+    foreach ($bucket in $config.buckets) {
+        if (-not (Test-Path -Path "$HOME\scoop\buckets\$($bucket.name)" -PathType Container)) {
+            Write-LogMessage "Adding $($bucket.name) bucket"
+            if ($bucket.url) {
+                Invoke-Program -ProgramPath scoop -ArgumentList @(
+                    'bucket'
+                    'add'
+                    "$($bucket.name)"
+                    "$($bucket.url)"
+                )
+            }
+            else {
+                Invoke-Program -ProgramPath scoop -ArgumentList @(
+                    'bucket'
+                    'add'
+                    "$($bucket.name)"
+                )
+            }
+        }
     }
 
     # Install Scoop Applications

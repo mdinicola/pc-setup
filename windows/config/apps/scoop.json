@@ -1,10 +1,22 @@
 {
-    "apps": [
+    "buckets": [
         {
-            "name": "mise"
+            "name": "extras"
         },
         {
+            "name": "supabase",
+            "url": "https://github.com/supabase/scoop-bucket.git"
+        }
+    ],
+    "apps": [
+        {
             "name": "sourcegit"
+        },
+        {
+            "name": "supabase"
+        },
+        {
+            "name": "dbmate"
         }
     ]
 }

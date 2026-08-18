@@ -41,6 +41,7 @@ function Set-EnvironmentVariable {
         [string]$Name,
 
         [Parameter(Mandatory)]
+        [AllowEmptyString()]
         [string]$Value,
 
         [ValidateSet('User', 'Machine')]
