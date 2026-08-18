@@ -71,6 +71,11 @@ function Invoke-ElevatedScript {
 # Runs WinUtil tool by Chris Titus to debloat Windows
 # https://github.com/christitustech/winutil
 function Invoke-WinUtil {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+        'PSAvoidUsingInvokeExpression',
+        '',
+        Justification = 'Invoke-Expression is used in the official install documentation'
+    )]
     param(
         [string]$ConfigFile = ""
     )
@@ -82,4 +87,15 @@ function Invoke-WinUtil {
         Write-LogMessage "Running WinUtil with config file: $ConfigFile"
         & ([ScriptBlock]::Create((Invoke-RestMethod https://christitus.com/win))) -Config "$ConfigFile"
     }
+}
+
+function Install-Scoop {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+        'PSAvoidUsingInvokeExpression',
+        '',
+        Justification = 'Invoke-Expression is used in the official install documentation'
+    )]
+    param()
+
+    Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 }

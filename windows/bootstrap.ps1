@@ -99,7 +99,7 @@ $tasks = @(
 )
 
 $tagAliases = @{
-    "all" = @("debloat", "settings-registry", "apps-winget", "apps-scoop", "apps-mise", 
+    "all" = @("debloat", "settings-registry", "apps-winget", "apps-scoop", "apps-mise",
         "settings-git", "settings-vscode", "settings-opentofu")
     "apps" = @("apps-winget", "apps-scoop", "apps-mise")
     "settings" = @("settings-registry", "settings-git", "settings-vscode", "settings-opentofu")

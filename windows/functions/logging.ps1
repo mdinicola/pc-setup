@@ -12,6 +12,11 @@ function Write-Section {
 }
 
 function Write-LogMessage {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+        'PSAvoidUsingWriteHost',
+        '',
+        Justification = 'Write-Host is required: Write-Information is not captured by transcripts in PowerShell 5.1'
+    )]
     param(
         [Parameter(Mandatory, Position = 0)]
         [AllowEmptyString()]
@@ -38,6 +43,11 @@ function Get-DefaultLogFolder {
 }
 
 function Start-Logging {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+        'PSUseShouldProcessForStateChangingFunctions',
+        '',
+        Justification = 'Transcript control does not require ShouldProcess support.'
+    )]
     param(
         [Parameter(Mandatory)]
         [string]$Name,
@@ -55,25 +65,22 @@ function Start-Logging {
             $LogFile = "$LogFolder\$Name.txt"
         }
     }
-    
+
     $logDirectory = Split-Path -Path "$LogFile"
 
     # Create log folder if it does not exist
     New-Item -Path "$logDirectory" -ItemType Directory -Force | Out-Null
 
-    # # Stop existing transcripts in this session to avoid conflicts
-    # try {
-    #     Stop-Transcript -ErrorAction Stop
-    # }
-    # catch {
-    #     if ($_.Exception.Message -notmatch 'not currently transcribing') {
-    #         throw
-    #     }
-    # }
-    
     Start-Transcript -Path "$LogFile" -Append
 }
 
 function Stop-Logging {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+        'PSUseShouldProcessForStateChangingFunctions',
+        '',
+        Justification = 'Transcript control does not require ShouldProcess support.'
+    )]
+    param()
+
     Stop-Transcript
 }

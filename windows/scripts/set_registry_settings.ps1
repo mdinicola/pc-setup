@@ -22,7 +22,6 @@ try {
 
     foreach ($setting in $configSettings) {
         $result = Set-RegistryValue `
-            -Description $setting.description `
             -KeyPath $setting.keyPath `
             -KeyName $setting.keyName `
             -Type $setting.type `
@@ -35,7 +34,7 @@ try {
 
     if ($restartWindowsExplorer) {
         Write-LogMessage "Restarting Windows Explorer"
-        
+
         taskkill.exe /F /IM "explorer.exe"
         Start-Process "explorer.exe"
     }

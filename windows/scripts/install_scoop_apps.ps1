@@ -24,7 +24,7 @@ try {
     }
     else {
         Write-LogMessage "Installing Scoop"
-        Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+        Install-Scoop
     }
 
     # Add scoop shims folder to session path if it is not in system path already

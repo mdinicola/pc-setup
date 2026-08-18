@@ -25,10 +25,9 @@ function Get-RegistryValue {
 }
 
 function Set-RegistryValue {
+    [CmdletBinding(SupportsShouldProcess)]
+    [OutputType([bool])]
     param(
-        [Parameter(Mandatory)]
-        [string]$Description,
-
         [Parameter(Mandatory)]
         [string]$KeyPath,
 
@@ -62,23 +61,27 @@ function Set-RegistryValue {
     }
 
     if ($null -ne $currentRecord) {
-        Write-LogMessage "Changing registry key $KeyPath\$KeyName from $($current.Value) to $Value"
-        Set-ItemProperty `
-            -Path $KeyPath `
-            -Name $KeyName `
-            -Value $Value
+        Write-LogMessage "Changing registry key $KeyPath\$KeyName from $($currentRecord.Value) to $Value"
+        if ($PSCmdlet.ShouldProcess("$KeyPath\$KeyName", 'Set registry key')) {
+            Set-ItemProperty `
+                -Path $KeyPath `
+                -Name $KeyName `
+                -Value $Value
+        }
     }
     else {
         Write-LogMessage "Creating registry key $KeyPath\$KeyName with type $Type and value $Value"
-        New-Item -Path $KeyPath -Force | Out-Null
+        if ($PSCmdlet.ShouldProcess("$KeyPath\$KeyName", 'Set registry key')) {
+            New-Item -Path $KeyPath -Force | Out-Null
 
-        New-ItemProperty `
-            -Path $KeyPath `
-            -Name $KeyName `
-            -PropertyType $Type `
-            -Value $Value `
-            -Force |
-            Out-Null
+            New-ItemProperty `
+                -Path $KeyPath `
+                -Name $KeyName `
+                -PropertyType $Type `
+                -Value $Value `
+                -Force |
+                Out-Null
+        }
     }
 
     return $true

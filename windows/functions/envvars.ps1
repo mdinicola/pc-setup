@@ -9,18 +9,19 @@ function Test-FolderInEnvironmentPath {
         [Parameter(Mandatory=$true)]
         [string]$FolderPath
     )
-    
+
     $FolderPath = $FolderPath.TrimEnd('\')
 
     $environmentPath = Get-EnvironmentPath -split ';' |
         Where-Object { $_ } |
         ForEach-Object { $_.Trim().TrimEnd('\') }
-    
-    return $environmentPaths -contains $Path
+
+    return $environmentPath -contains $Path
 }
 
 function Get-EnvironmentVariable {
     [CmdletBinding()]
+    [OutputType([string])]
     param (
         [Parameter(Mandatory)]
         [string]$Name,
@@ -34,6 +35,7 @@ function Get-EnvironmentVariable {
 
 
 function Set-EnvironmentVariable {
+    [CmdletBinding(SupportsShouldProcess)]
     param (
         [Parameter(Mandatory)]
         [string]$Name,
@@ -46,5 +48,7 @@ function Set-EnvironmentVariable {
     )
 
     Write-LogMessage "Setting $Scope environment variable $Name to $Value"
-    [Environment]::SetEnvironmentVariable($Name, $Value, $Scope) | Out-Null
+    if ($PSCmdlet.ShouldProcess($Name, 'Set environment variable')) {
+        [Environment]::SetEnvironmentVariable($Name, $Value, $Scope) | Out-Null
+    }
 }
