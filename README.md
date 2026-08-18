@@ -57,6 +57,21 @@ cd pc-setup/windows
 ./bootstrap.ps1
 ```
 
+#### Logging
+
+Logs are written to `C:\temp\logs\pc-setup\{dated_folder}`
+
+Example: `C:\temp\logs\pc-setup\20260818_001604`
+
+Log folder contents:
+- bootstrap.txt contains logs for the bootstrap process as well as each non-admin task
+    - non-admin tasks are also written to their own log file as described below
+- each task contains its own log file.  For example:
+    - apps_winget.txt
+    - apps_scoop.txt
+    - settings_registry.txt
+    - settings_git.txt
+
 ## What Gets Configured
 
 The bootstrap scripts install applications and development tooling and apply a number of system and application preferences.
