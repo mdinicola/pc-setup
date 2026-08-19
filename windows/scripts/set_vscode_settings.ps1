@@ -22,7 +22,9 @@ try {
     Write-LogMessage "Writing VS Code settings to $destinationConfigFile"
 
     # create config folder if it does not exist
-    New-Item -Path "$destinationConfigFolder" -ItemType Directory -Force | Out-Null
+    if (-not (Test-Path -Path "$destinationConfigFolder" -PathType Container)) {
+        New-Item -Path "$destinationConfigFolder" -ItemType Directory -Force | Out-Null
+    }
     Copy-Item -Path "$ConfigFile" -Destination "$destinationConfigFile"
 }
 finally {

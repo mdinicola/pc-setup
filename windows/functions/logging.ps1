@@ -69,7 +69,9 @@ function Start-Logging {
     $logDirectory = Split-Path -Path "$LogFile"
 
     # Create log folder if it does not exist
-    New-Item -Path "$logDirectory" -ItemType Directory -Force | Out-Null
+    if (-not (Test-Path -Path "$logDirectory" -PathType Container)) {
+        New-Item -Path "$logDirectory" -ItemType Directory -Force | Out-Null
+    }
 
     Start-Transcript -Path "$LogFile" -Append
 }

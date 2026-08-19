@@ -72,7 +72,9 @@ function Set-RegistryValue {
     else {
         Write-LogMessage "Creating registry key $KeyPath\$KeyName with type $Type and value $Value"
         if ($PSCmdlet.ShouldProcess("$KeyPath\$KeyName", 'Set registry key')) {
-            New-Item -Path $KeyPath -Force | Out-Null
+            if (-not (Test-Path -Path "$KeyPath" -PathType Container)) {
+                New-Item -Path $KeyPath | Out-Null
+            }
 
             New-ItemProperty `
                 -Path $KeyPath `
