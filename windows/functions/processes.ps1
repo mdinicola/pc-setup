@@ -4,13 +4,15 @@ function Invoke-Program {
         [Parameter(Mandatory)]
         [string]$ProgramPath,
 
-        [string[]]$ArgumentList = @()
+        [string[]]$ArgumentList = @(),
+
+        [int[]]$AllowedExitCodes = @(0)
     )
 
     & $ProgramPath @ArgumentList
     $exitCode = $LASTEXITCODE
 
-    if ($exitCode -ne 0) {
+    if ($exitCode -notin $AllowedExitCodes) {
         throw "'$ProgramPath' failed with exit code $exitCode"
     }
 }

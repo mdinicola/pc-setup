@@ -41,24 +41,31 @@ try {
     }
 
     foreach ($bucket in $config.buckets) {
-        if (-not (Test-Path -Path "$HOME\scoop\buckets\$($bucket.name)" -PathType Container)) {
-            Write-LogMessage "Adding $($bucket.name) bucket"
-            if ($bucket.url) {
-                Invoke-Program -ProgramPath scoop -ArgumentList @(
-                    'bucket'
-                    'add'
-                    "$($bucket.name)"
-                    "$($bucket.url)"
-                )
-            }
-            else {
-                Invoke-Program -ProgramPath scoop -ArgumentList @(
-                    'bucket'
-                    'add'
-                    "$($bucket.name)"
-                )
-            }
+        # Remove the buckets first because scoop might throw git merge conflicts otherwise
+        Write-LogMessage "Removing $($bucket.name) bucket"
+        Invoke-Program -ProgramPath scoop -ArgumentList @(
+            'bucket'
+            'rm'
+            "$($bucket.name)"
+        ) -AllowedExitCodes @(0, 1)
+        
+        Write-LogMessage "Adding $($bucket.name) bucket"
+        if ($bucket.url) {
+            Invoke-Program -ProgramPath scoop -ArgumentList @(
+                'bucket'
+                'add'
+                "$($bucket.name)"
+                "$($bucket.url)"
+            )
         }
+        else {
+            Invoke-Program -ProgramPath scoop -ArgumentList @(
+                'bucket'
+                'add'
+                "$($bucket.name)"
+            )
+        }
+        
     }
 
     # Install Scoop Applications
