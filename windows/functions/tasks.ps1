@@ -9,10 +9,37 @@ function Get-SelectedTask {
         return @($Tasks)
     }
 
+    $tagOrder = @{}
+    for ($i = 0; $i -lt $Tags.Count; $i++) {
+        if (-not $tagOrder.ContainsKey($Tags[$i])) {
+            $tagOrder[$Tags[$i]] = $i
+        }
+    }
+
+    $taskIndex = 0
     @(
-        $Tasks | Where-Object {
+        $Tasks | ForEach-Object {
+            $task = $_
             $taskTags = @($_.Tags | ForEach-Object { $_.ToLowerInvariant() })
-            @($taskTags | Where-Object { $_ -in $Tags }).Count -gt 0
+            $matchingTagOrder = @(
+                $taskTags | Where-Object {
+                    $tagOrder.ContainsKey($_)
+                } | ForEach-Object {
+                    $tagOrder[$_]
+                }
+            )
+
+            if ($matchingTagOrder.Count -gt 0) {
+                [PSCustomObject]@{
+                    Task = $task
+                    TagOrder = ($matchingTagOrder | Measure-Object -Minimum).Minimum
+                    TaskOrder = $taskIndex
+                }
+            }
+
+            $taskIndex++
+        } | Sort-Object -Property TagOrder, TaskOrder | ForEach-Object {
+            $_.Task
         }
     )
 }

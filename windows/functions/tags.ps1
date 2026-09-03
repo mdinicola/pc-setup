@@ -38,14 +38,24 @@ function Expand-Tag {
         [hashtable]$TagAliases
     )
 
+    $expandedTags = @()
+
+    foreach ($tag in $Tags) {
+        $tagsToAdd = if ($TagAliases.ContainsKey($tag)) {
+            @($TagAliases[$tag])
+        }
+        else {
+            @($tag)
+        }
+
+        foreach ($tagToAdd in $tagsToAdd) {
+            if ($tagToAdd -notin $expandedTags) {
+                $expandedTags += $tagToAdd
+            }
+        }
+    }
+
     @(
-        $Tags | ForEach-Object {
-            if ($TagAliases.ContainsKey($_)) {
-                $TagAliases[$_]
-            }
-            else {
-                $_
-            }
-        } | Sort-Object -Unique
+        $expandedTags
     )
 }
