@@ -90,6 +90,15 @@ $tasks = @(
         }
     },
     @{
+        Name = "Set Supabase Settings"
+        Tags = @("settings-supabase")
+        Action = {
+            Invoke-Script -ScriptPath "$scriptsFolder\set_supabase_settings.ps1" -Parameters @{
+                LogFolder = "$logFolder"
+            }
+        }
+    },
+    @{
         Name = "Run WinUtil"
         Tags = @("winutil-interactive")
         Action = {
@@ -100,9 +109,10 @@ $tasks = @(
 
 $tagAliases = @{
     "all" = @("debloat", "settings-registry", "apps-winget", "apps-scoop", "apps-npm",
-        "settings-git", "settings-vscode", "settings-opentofu")
+        "settings-git", "settings-vscode", "settings-opentofu", "settings-supabase")
     "apps" = @("apps-winget", "apps-scoop", "apps-mise")
-    "settings" = @("settings-registry", "settings-git", "settings-vscode", "settings-opentofu")
+    "settings" = @("settings-registry", "settings-git", "settings-vscode", 
+        "settings-opentofu", "settings-supabase")
 }
 
 Start-Logging -Name "bootstrap" -LogFolder "$logFolder"

@@ -1,0 +1,11 @@
+---
+- name: Check Supabase telemetry status
+  ansible.builtin.command:
+    cmd: supabase telemetry status
+  register: supabase_telemetry_status
+  changed_when: false
+
+- name: Disable Supabase telemetry
+  ansible.builtin.command:
+    cmd: supabase telemetry disable
+  when: "'disabled' not in (supabase_telemetry_status.stdout | lower)"
