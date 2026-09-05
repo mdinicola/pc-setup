@@ -1,0 +1,33 @@
+---
+- name: Add Docker Module Repository
+  ansible.builtin.deb822_repository:
+    name: docker
+    types: [deb]
+    uris: "https://download.docker.com/linux/ubuntu"
+    signed_by: "https://download.docker.com/linux/ubuntu/gpg"
+    architectures: amd64
+    suites: ["{{ ubuntu_codename | lower }}"]
+    components: [stable]
+    state: present
+    enabled: yes
+  become: yes
+  notify:
+    - Update APT cache
+
+- meta: flush_handlers
+
+- name: Install docker engine
+  ansible.builtin.apt:
+    name: "{{ item }}"  
+    state: present
+  become: yes
+  loop:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+    - docker-buildx-plugin
+    - docker-compose-plugin
+
+- name: Configure Docker
+  ansible.builtin.import_tasks: 
+    file: "{{ playbook_dir }}/../../common/tasks/docker.yml"

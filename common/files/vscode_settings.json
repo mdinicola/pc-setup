@@ -1,0 +1,17 @@
+{
+    "chat.disableAIFeatures": true,
+    "extensions.ignoreRecommendations": true,
+    "workbench.startupEditor": "none",
+    "update.showReleaseNotes": false,
+    "files.trimTrailingWhitespace": true,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.stickyTabStops": false,
+    "editor.detectIndentation": true,
+    "[python]": {
+        "editor.tabSize": 4
+    },
+    "[powershell]": {
+        "editor.tabSize": 4
+    }
+}

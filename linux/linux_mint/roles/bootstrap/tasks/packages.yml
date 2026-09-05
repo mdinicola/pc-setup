@@ -1,0 +1,42 @@
+---
+- name: Install packages
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  become: yes
+  loop:
+    - apt-transport-https
+    - ca-certificates
+    - cifs-utils
+    - curl
+    - extrepo
+    - xz-utils
+    - gnupg
+    - software-properties-common
+    - ffmpeg
+    - git
+    - jq
+
+- name: Install apt applications
+  ansible.builtin.apt:
+    name: "{{ item }}"  
+    state: present
+  become: yes
+  loop:
+    - brave-origin
+    - kate
+    - code # Visual Studio Code
+    - vlc
+    - qdirstat
+    - flameshot
+    - kopia-ui
+    - sourcegit
+
+- name: Install flatpak applications
+  community.general.flatpak:
+    name: "{{ item }}"
+    state: present
+  become: yes
+  loop:
+    - com.github.tchx84.Flatseal
+    - io.dbeaver.DBeaverCommunity

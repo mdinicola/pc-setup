@@ -1,0 +1,14 @@
+[
+    {
+        "description": "Set default branch to main",
+        "scope": "global",
+        "name": "init.defaultBranch",
+        "value": "main"
+    },
+    {
+        "description": "Set autocrlf for line endings",
+        "scope": "global",
+        "name": "core.autocrlf",
+        "value": "true"
+    }
+]

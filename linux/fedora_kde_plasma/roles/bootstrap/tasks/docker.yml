@@ -1,0 +1,23 @@
+---
+- name: Add Docker repository
+  ansible.builtin.get_url:
+    url: https://download.docker.com/linux/fedora/docker-ce.repo
+    dest: /etc/yum.repos.d/docker-ce.repo
+    mode: '0644'
+  become: yes
+
+- name: Install docker engine
+  ansible.builtin.dnf:
+    name: "{{ item }}"  
+    state: present
+  become: yes
+  loop:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+    - docker-buildx-plugin
+    - docker-compose-plugin
+
+- name: Configure Docker
+  ansible.builtin.import_tasks: 
+    file: "{{ playbook_dir }}/../../common/tasks/docker.yml"

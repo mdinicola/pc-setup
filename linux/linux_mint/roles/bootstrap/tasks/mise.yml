@@ -1,0 +1,35 @@
+---
+# Replace extrepo when Linux Mint uses Ubuntu 26.04+
+# - name: Add mise PPA
+#   ansible.builtin.deb822_repository:
+#     name: mise
+#     types: [deb]
+#     uris: https://ppa.launchpadcontent.net/jdxcode/mise/ubuntu
+#     signed_by: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x38A097C0CCE691795E4B15BE23997D3EEE1EDC52
+#     suites: ["{{ ubuntu_codename | lower }}"]
+#     components: [main]
+#     state: present
+#     enabled: yes
+#   become: yes
+#   notify:
+#     - Update APT cache
+
+- name: Enable mise repository from extrepo
+  ansible.builtin.command: 
+    cmd: extrepo enable mise
+    creates: /etc/apt/sources.list.d/extrepo_mise.sources
+  become: yes
+  notify:
+    - Update APT cache
+
+- meta: flush_handlers
+
+- name: Install mise
+  ansible.builtin.apt:
+    name: mise
+    state: present
+  become: yes
+
+- name: Configure Mise
+  ansible.builtin.import_tasks: 
+    file: "{{ playbook_dir }}/../../common/tasks/mise.yml"

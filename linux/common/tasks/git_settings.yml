@@ -1,0 +1,12 @@
+---
+- name: Set default branch
+  community.general.git_config:
+    name: init.defaultbranch
+    value: main
+    scope: global
+
+- name: Set autocrlf
+  community.general.git_config:
+    name: core.autocrlf
+    value: input
+    scope: global

@@ -1,0 +1,24 @@
+---
+- name: Enable fastest mirror in dnf config
+  ansible.builtin.ini_file:
+    path: /etc/dnf/dnf.conf
+    section: main
+    option: fastestmirror
+    value: 'True'
+  become: yes
+
+- name: Set parallel downloads in dnf config
+  ansible.builtin.ini_file:
+    path: /etc/dnf/dnf.conf
+    section: main
+    option: max_parallel_downloads
+    value: '10'
+  become: yes
+
+- name: Set default to yes in dnf config
+  ansible.builtin.ini_file:
+    path: /etc/dnf/dnf.conf
+    section: main
+    option: defaultyes
+    value: 'True'
+  become: yes

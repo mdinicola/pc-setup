@@ -1,0 +1,59 @@
+---
+- name: Install common packages
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  become: yes
+  loop:
+    - ca-certificates
+    - cifs-utils
+    - curl
+    - git
+    - xz
+    - gnupg2
+    - nmap
+    - skanpage
+    - jq
+
+- name: Install rpm fusion packages
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    allowerasing: yes
+    state: present
+  become: yes
+  loop:
+    - ffmpeg
+
+- name: Update dnf groups to latest
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: latest
+  become: yes
+  loop:
+    - "@multimedia"
+    - "@core"
+
+- name: Install applications and tools
+  ansible.builtin.dnf:
+    name: "{{ item }}"  
+    state: present
+  become: yes
+  loop:
+    - brave-origin
+    - code # VS Code
+    - vlc
+    - qdirstat
+    - kate
+    - sourcegit
+    - flameshot
+    - kopia-ui
+
+- name: Install flatpak applications
+  community.general.flatpak:
+    name: "{{ item }}"
+    state: present
+  become: yes
+  loop:
+    - com.github.tchx84.Flatseal
+    - io.dbeaver.DBeaverCommunity
+    - com.usebruno.Bruno

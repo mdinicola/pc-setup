@@ -1,0 +1,44 @@
+[
+    {
+        "description": "Enable long file paths",
+        "keyPath": "HKLM:\\SYSTEM\\CurrentControlSet\\Control\\FileSystem",
+        "keyName": "LongPathsEnabled",
+        "type": "DWord",
+        "value": 1
+    },
+    {
+        "description": "Hide Start Menu Recommendations",
+        "keyPath": "HKLM:\\SOFTWARE\\Microsoft\\PolicyManager\\current\\device\\Start",
+        "keyName": "HideRecommendedSection",
+        "type": "DWord",
+        "value": 1
+    },
+    {
+        "description": "Hide More Start Menu Recommendations",
+        "keyPath": "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\Explorer",
+        "keyName": "HideRecommendedSection",
+        "type": "DWord",
+        "value": 1
+    },
+    {
+        "description": "Disable Start Menu Bing Search",
+        "keyPath": "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Search",
+        "keyName": "BingSearchEnabled",
+        "type": "DWord",
+        "value": 1
+    },
+    {
+        "description": "Disable Sticky Keys",
+        "keyPath": "HKCU:\\Control Panel\\Accessibility\\StickyKeys",
+        "keyName": "Flags",
+        "type": "String",
+        "value": 0
+    },
+    {
+        "description": "Show file extensions",
+        "keyPath": "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+        "keyName": "HideFileExt",
+        "type": "DWord",
+        "value": 0
+    }
+]

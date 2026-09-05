@@ -1,49 +1,125 @@
 param(
-    [switch]$DryRun,
     [string[]]$Tags
 )
 
-. "$PSScriptRoot\functions.ps1"
+$ErrorActionPreference = 'Stop'
+$InformationPreference = 'Continue'
+
+. "$PSScriptRoot\functions\logging.ps1"
+. "$PSScriptRoot\functions\tasks.ps1"
+. "$PSScriptRoot\functions\tags.ps1"
+. "$PSScriptRoot\functions\processes.ps1"
+
+$scriptsFolder = "$PSScriptRoot\scripts"
+$logFolder = Get-DefaultLogFolder
 
 $tasks = @(
     @{
-        Name = "Installing Apps"
-        Tags = @("apps-main")
+        Name = "Debloat Windows"
+        Tags = @("debloat")
         Action = {
-            Invoke-WingetConfigure -File "configs\apps\apps.yaml" -DryRun:$DryRun
+            Invoke-ElevatedScript -ScriptPath "$scriptsFolder\debloat.ps1" -Parameters @(
+                '-LogFolder'
+                "$logFolder"
+            )
         }
     },
     @{
-        Name = "Installing Dev Apps"
-        Tags = @("apps-dev")
+        Name = "Install WinGet Apps"
+        Tags = @("apps-winget")
         Action = {
-            Invoke-WingetConfigure -File "configs\apps\dev.yaml" -DryRun:$DryRun
+            Invoke-ElevatedScript -ScriptPath "$scriptsFolder\install_winget_apps.ps1" -Parameters @(
+                '-LogFolder'
+                "$logFolder"
+            )
         }
     },
     @{
-        Name = "Installing Dev Apps (Optional)"
-        Tags = @("apps-dev-optional")
+        Name = "Install Scoop Apps"
+        Tags = @("apps-scoop")
         Action = {
-            Invoke-WingetConfigure -File "configs\apps\dev_optional.yaml" -DryRun:$DryRun
+            Invoke-Script -ScriptPath "$scriptsFolder\install_scoop_apps.ps1" -Parameters @{
+                LogFolder = "$logFolder"
+            }
         }
     },
     @{
-        Name = "Configure Brave Settings"
-        Tags = @("brave-browser")
+        Name = "Install NPM Apps"
+        Tags = @("apps-npm")
         Action = {
-            Invoke-WingetConfigure -File "configs\settings\brave_browser.yaml" -DryRun:$DryRun
+            Invoke-Script -ScriptPath "$scriptsFolder\install_npm_apps.ps1" -Parameters @{
+                LogFolder = "$logFolder"
+            }
+        }
+    },
+    @{
+        Name = "Set Registry Settings"
+        Tags = @("settings-registry")
+        Action = {
+            Invoke-ElevatedScript -ScriptPath "$scriptsFolder\set_registry_settings.ps1" -Parameters @(
+                '-LogFolder'
+                "$logFolder"
+            )
+        }
+    },
+    @{
+        Name = "Set Git Settings"
+        Tags = @("settings-git")
+        Action = {
+            Invoke-Script -ScriptPath "$scriptsFolder\set_git_settings.ps1" -Parameters @{
+                LogFolder = "$logFolder"
+            }
+        }
+    },
+    @{
+        Name = "Set VS Code Settings"
+        Tags = @("settings-vscode")
+        Action = {
+            Invoke-Script -ScriptPath "$scriptsFolder\set_vscode_settings.ps1" -Parameters @{
+                LogFolder = "$logFolder"
+            }
+        }
+    },
+    @{
+        Name = "Set OpenTofu Settings"
+        Tags = @("settings-opentofu")
+        Action = {
+            Invoke-Script -ScriptPath "$scriptsFolder\set_opentofu_settings.ps1" -Parameters @{
+                LogFolder = "$logFolder"
+            }
+        }
+    },
+    @{
+        Name = "Set Supabase Settings"
+        Tags = @("settings-supabase")
+        Action = {
+            Invoke-Script -ScriptPath "$scriptsFolder\set_supabase_settings.ps1" -Parameters @{
+                LogFolder = "$logFolder"
+            }
+        }
+    },
+    @{
+        Name = "Run WinUtil"
+        Tags = @("winutil-interactive")
+        Action = {
+            Invoke-ElevatedScript -ScriptPath "$scriptsFolder\run_winutil.ps1"
         }
     }
 )
 
 $tagAliases = @{
-    "all" = @("apps-main", "apps-dev", "apps-dev-optional", "brave-browser")
-    "apps" = @("apps-main", "apps-dev")
-    "apps-full" = @("apps-main", "apps-dev", "apps-dev-optional")
-    "dev" = @("apps-dev")
-    "dev-full" = @("apps-dev", "apps-dev-optional")
-    "browser" = @("brave-browser")
-    "settings" = @("brave-browser")
+    "all" = @("debloat", "settings-registry", "apps-winget", "apps-scoop", "apps-npm",
+        "settings-git", "settings-vscode", "settings-opentofu", "settings-supabase")
+    "apps" = @("apps-winget", "apps-scoop", "apps-mise")
+    "settings" = @("settings-registry", "settings-git", "settings-vscode", 
+        "settings-opentofu", "settings-supabase")
 }
 
-Invoke-TaggedTasks -Tasks $tasks -Tags $Tags -TagAliases $tagAliases -DryRun:$DryRun
+Start-Logging -Name "bootstrap" -LogFolder "$logFolder"
+
+try {
+    Invoke-TaggedTask -Tasks $tasks -Tags $Tags -TagAliases $tagAliases
+}
+finally {
+    Stop-Logging
+}
