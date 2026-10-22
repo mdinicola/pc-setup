@@ -13,3 +13,5 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # Install development tools
 mise install
+
+ansible-playbook -i "$SCRIPT_DIR/inventory.yml" "$SCRIPT_DIR/playbooks/post_bootstrap.yml" "$@"

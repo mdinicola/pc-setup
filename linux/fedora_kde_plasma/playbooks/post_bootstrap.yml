@@ -1,0 +1,7 @@
+---
+- name: Run Post-Bootstrap steps on Fedora KDE Plasma Workstation
+  hosts: localhost
+  roles:
+    - role: ../roles/post_bootstrap
+      tags:
+        - post_bootstrap

@@ -16,9 +16,3 @@
     file: "{{ playbook_dir }}/../../common/tasks/vscode_settings.yml"
   tags:
     - vscode
-
-- name: Set supabase settings
-  ansible.builtin.import_tasks: 
-    file: "{{ playbook_dir }}/../../common/tasks/supabase_settings.yml"
-  tags:
-    - supabase
