@@ -1,0 +1,7 @@
+---
+- name: Bootstrap Fedora GNOME Workstation
+  hosts: localhost
+  roles:
+    - role: ../roles/bootstrap
+      tags:
+        - bootstrap

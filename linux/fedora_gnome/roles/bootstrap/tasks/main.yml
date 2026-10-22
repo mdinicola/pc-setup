@@ -1,0 +1,14 @@
+---
+- name: Run fedora common setup
+  ansible.builtin.import_tasks: 
+    file: "{{ playbook_dir }}/../../fedora_common/tasks/main.yml"
+  tags:
+    - fedora
+    - common_setup
+
+- name: Install GNOME Packages
+  ansible.builtin.import_tasks: 
+    file: packages.yml
+  tags:
+    - packages
+    - apps

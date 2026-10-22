@@ -1,0 +1,9 @@
+---
+- name: Install GNOME applications and tools
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  become: yes
+  loop:
+    - file-roller
+    - baobab
