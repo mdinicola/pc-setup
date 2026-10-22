@@ -40,9 +40,7 @@
     - brave-origin
     - code # VS Code
     - vlc
-    # - qdirstat
     - sourcegit
-#    - flameshot
     - kopia-ui
 
 - name: Install flatpak applications
