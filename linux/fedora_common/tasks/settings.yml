@@ -1,10 +1,4 @@
 ---
-- name: Set dnf settings
-  ansible.builtin.import_tasks: 
-    file: dnf_settings.yml
-  tags:
-    - dnf_settings
-
 - name: Set git settings
   ansible.builtin.import_tasks: 
     file: "{{ playbook_dir }}/../../common/tasks/git_settings.yml"

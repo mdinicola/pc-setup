@@ -1,4 +1,11 @@
 ---
+- name: Set dnf settings
+  ansible.builtin.import_tasks: 
+    file: dnf_settings.yml
+  tags:
+    - dnf_settings
+    - dnf
+
 - name: Enable RPM Fusion
   ansible.builtin.dnf:
     name:
