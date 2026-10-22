@@ -1,0 +1,24 @@
+---
+- name: Set dnf settings
+  ansible.builtin.import_tasks: 
+    file: dnf_settings.yml
+  tags:
+    - dnf_settings
+
+- name: Set git settings
+  ansible.builtin.import_tasks: 
+    file: "{{ playbook_dir }}/../../common/tasks/git_settings.yml"
+  tags:
+    - git_settings
+
+- name: Set vscode settings
+  ansible.builtin.import_tasks: 
+    file: "{{ playbook_dir }}/../../common/tasks/vscode_settings.yml"
+  tags:
+    - vscode
+
+- name: Set supabase settings
+  ansible.builtin.import_tasks: 
+    file: "{{ playbook_dir }}/../../common/tasks/supabase_settings.yml"
+  tags:
+    - supabase
