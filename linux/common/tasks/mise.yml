@@ -20,4 +20,4 @@
   ansible.builtin.command:
     cmd: mise install
   register: mise_install_result
-  changed_when: "'mise all tools are installed' not in (mise_install_result.stdout | lower)"
+  changed_when: "'mise all tools are installed' not in mise_install_result.stderr"
