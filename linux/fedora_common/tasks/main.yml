@@ -54,16 +54,9 @@
     - mise
     - tools
 
-- name: Configure OpenTofu
-  ansible.builtin.import_tasks: 
-    file: "{{ playbook_dir }}/../../common/tasks/opentofu_settings.yml"
-  tags:
-    - opentofu
-    - tools
-
 - name: Configure Settings and Preferences
   ansible.builtin.import_tasks: 
-    file: settings.yml
+    file: "{{ playbook_dir }}/../../common/tasks/settings.yml"
   tags:
     - settings
     - preferences

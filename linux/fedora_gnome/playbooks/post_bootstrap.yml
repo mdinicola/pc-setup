@@ -1,7 +1,0 @@
----
-- name: Run Post-Bootstrap steps on Fedora GNOME Workstation
-  hosts: localhost
-  roles:
-    - role: ../roles/post_bootstrap
-      tags:
-        - post_bootstrap

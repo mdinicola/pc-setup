@@ -9,9 +9,4 @@ sudo dnf install -y ansible-core
 ansible-playbook -i "$SCRIPT_DIR/inventory.yml" "$SCRIPT_DIR/playbooks/ansible_galaxy.yml"
 ansible-playbook -i "$SCRIPT_DIR/inventory.yml" "$SCRIPT_DIR/playbooks/bootstrap.yml" "$@" --ask-become-pass
 
-export PATH="$HOME/.local/bin:$PATH"
-
-# Install development tools
-mise install
-
-ansible-playbook -i "$SCRIPT_DIR/inventory.yml" "$SCRIPT_DIR/playbooks/post_bootstrap.yml" "$@"
+echo "Bootstrap succeeded.  Re-open terminal to use newly installed apps"
