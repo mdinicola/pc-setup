@@ -1,13 +1,13 @@
 ---
 - name: Set git settings
   ansible.builtin.import_tasks: 
-    file: "git_settings.yml"
+    file: git_settings.yml
   tags:
     - git_settings
 
 - name: Set vscode settings
   ansible.builtin.import_tasks: 
-    file: "vscode_settings.yml"
+    file: vscode_settings.yml
   tags:
     - vscode
 
@@ -19,7 +19,7 @@
 
 - name: Set opentofu settings
   ansible.builtin.import_tasks: 
-    file: opentufu_settings.yml
+    file: opentofu_settings.yml
   when: "'opentofu' in mise_global_config"
   tags:
     - tools
