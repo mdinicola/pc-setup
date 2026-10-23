@@ -1,0 +1,10 @@
+---
+- name: Install flatpak applications
+  community.general.flatpak:
+    name: "{{ item }}"
+    state: present
+  become: yes
+  loop:
+    - com.github.tchx84.Flatseal
+    - io.dbeaver.DBeaverCommunity
+    - com.usebruno.Bruno

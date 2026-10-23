@@ -43,12 +43,10 @@
     - sourcegit
     - kopia-ui
 
-- name: Install flatpak applications
-  community.general.flatpak:
-    name: "{{ item }}"
-    state: present
-  become: yes
-  loop:
-    - com.github.tchx84.Flatseal
-    - io.dbeaver.DBeaverCommunity
-    - com.usebruno.Bruno
+- name: Install Flatpak Applications
+  ansible.builtin.import_tasks: 
+    file: "{{ playbook_dir }}/../../common/tasks/flatpaks.yml"
+  tags:
+    - flatpak
+    - flathub
+    - apps
