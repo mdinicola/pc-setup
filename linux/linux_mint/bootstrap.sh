@@ -13,5 +13,4 @@ export PATH="$HOME/.local/bin:$PATH"
 ansible-playbook -i "$SCRIPT_DIR/inventory.yml" "$SCRIPT_DIR/playbooks/ansible_galaxy.yml"
 ansible-playbook -i "$SCRIPT_DIR/inventory.yml" "$SCRIPT_DIR/playbooks/bootstrap.yml" "$@" --ask-become-pass
 
-# Install development tools
-mise install
+echo "Bootstrap succeeded.  Re-open terminal to use newly installed apps"

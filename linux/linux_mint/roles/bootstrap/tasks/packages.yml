@@ -1,5 +1,5 @@
 ---
-- name: Install packages
+- name: Install general packages
   ansible.builtin.apt:
     name: "{{ item }}"
     state: present
@@ -17,7 +17,7 @@
     - git
     - jq
 
-- name: Install apt applications
+- name: Install applications and tools
   ansible.builtin.apt:
     name: "{{ item }}"  
     state: present
@@ -32,11 +32,10 @@
     - kopia-ui
     - sourcegit
 
-- name: Install flatpak applications
-  community.general.flatpak:
-    name: "{{ item }}"
-    state: present
-  become: yes
-  loop:
-    - com.github.tchx84.Flatseal
-    - io.dbeaver.DBeaverCommunity
+- name: Install cross-distro packages and applications
+  ansible.builtin.import_tasks: 
+    file: "{{ playbook_dir }}/../../common/tasks/packages.yml"
+  tags:
+    - packages
+    - apps
+    - flatpak

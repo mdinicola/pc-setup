@@ -6,20 +6,9 @@
     - firewall
     - ufw
 
-- name: Set git settings
+- name: Configure common settings and preferences
   ansible.builtin.import_tasks: 
-    file: "{{ playbook_dir }}/../../common/tasks/git_settings.yml"
+    file: "{{ playbook_dir }}/../../common/tasks/settings.yml"
   tags:
-    - git_settings
-
-- name: Set vscode settings
-  ansible.builtin.import_tasks: 
-    file: "{{ playbook_dir }}/../../common/tasks/vscode_settings.yml"
-  tags:
-    - vscode
-
-- name: Set supabase settings
-  ansible.builtin.import_tasks: 
-    file: "{{ playbook_dir }}/../../common/tasks/supabase_settings.yml"
-  tags:
-    - supabase
+    - settings
+    - preferences
