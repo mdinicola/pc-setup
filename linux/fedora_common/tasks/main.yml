@@ -54,7 +54,7 @@
     - mise
     - tools
 
-- name: Configure Settings and Preferences
+- name: Configure settings and preferences
   ansible.builtin.import_tasks: 
     file: "{{ playbook_dir }}/../../common/tasks/settings.yml"
   tags:
