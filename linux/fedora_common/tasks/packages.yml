@@ -1,5 +1,5 @@
 ---
-- name: Install common packages
+- name: Install general packages
   ansible.builtin.dnf:
     name: "{{ item }}"
     state: present
@@ -13,6 +13,7 @@
     - gnupg2
     - nmap
     - jq
+    - openssl
 
 - name: Install rpm fusion packages
   ansible.builtin.dnf:
@@ -43,10 +44,10 @@
     - sourcegit
     - kopia-ui
 
-- name: Install Flatpak Applications
+- name: Install cross-distro packages and applications
   ansible.builtin.import_tasks: 
-    file: "{{ playbook_dir }}/../../common/tasks/flatpaks.yml"
+    file: "{{ playbook_dir }}/../../common/tasks/packages.yml"
   tags:
-    - flatpak
-    - flathub
+    - packages
     - apps
+    - flatpak

@@ -1,5 +1,5 @@
 ---
-- name: Install flatpak applications
+- name: Install Flatpak applications
   community.general.flatpak:
     name: "{{ item }}"
     state: present
