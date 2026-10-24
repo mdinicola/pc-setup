@@ -1,0 +1,8 @@
+---
+- name: Run Post-Bootstrap steps on Fedora KDE Plasma Workstation
+  hosts: localhost
+  roles:
+    - role: ../roles/install_gnome
+      tags:
+        - install_gnome
+        - gnome
