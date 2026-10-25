@@ -1,7 +1,7 @@
 ---
 - name: Set time to 12 hour format
   community.general.dconf:
-    key: "org/gnome/desktop/interface/clock-format"
+    key: "/org/gnome/desktop/interface/clock-format"
     value: "'12h'"
     state: present
   tags:
