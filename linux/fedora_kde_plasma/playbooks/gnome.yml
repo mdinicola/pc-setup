@@ -2,7 +2,6 @@
 - name: Run GNOME installation on Fedora KDE Plasma Workstation
   hosts: localhost
   roles:
-    - role: ../roles/install_gnome
+    - role: ../roles/gnome
       tags:
-        - install_gnome
         - gnome
