@@ -12,3 +12,10 @@
   tags:
     - packages
     - apps
+
+- name: Configure settings and preferences
+  ansible.builtin.import_tasks: 
+    file: settings.yml
+  tags:
+    - settings
+    - preferences

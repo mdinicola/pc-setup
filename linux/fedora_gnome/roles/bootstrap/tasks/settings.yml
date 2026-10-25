@@ -1,0 +1,16 @@
+---
+- name: Set time to 12 hour format
+  community.general.dconf:
+    key: "org/gnome/desktop/interface/clock-format"
+    value: "'12h'"
+    state: present
+  tags:
+    - date_time
+
+- name: Display day of week in clock bar
+  community.general.dconf:
+    key: "/org/gnome/desktop/interface/clock-show-weekday"
+    value: "true"
+    state: present
+  tags:
+    - date_time
