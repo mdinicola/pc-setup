@@ -1,0 +1,7 @@
+---
+- name: Run KDE Plasma bootstrap role
+  ansible.builtin.import_tasks: 
+    file: "{{ playbook_dir }}/../../fedora_common/tasks/kde_plasma.yml"
+  tags:
+    - kde_bootstrap
+    - kde

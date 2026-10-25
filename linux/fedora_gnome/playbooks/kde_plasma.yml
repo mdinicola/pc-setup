@@ -1,0 +1,8 @@
+---
+- name: Run KDE Plasma installation on Fedora GNOME Workstation
+  hosts: localhost
+  roles:
+    - role: ../roles/kde_plasma
+      tags:
+        - kde_plasma
+        - kde

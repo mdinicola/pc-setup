@@ -1,0 +1,25 @@
+---
+- name: Add Flathub repository
+  community.general.flatpak_remote:
+    name: flathub
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    state: present
+  become: yes
+
+- name: Install KDE desktop packages
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: latest
+  become: yes
+  loop:
+    - "@kde-desktop-environment"
+  tags:
+    - kde_desktop
+    - kde
+
+- name: Run KDE Plasma bootstrap role
+  ansible.builtin.import_role: 
+    name: "{{ playbook_dir }}/../../fedora_kde_plasma/roles/bootstrap"
+  tags:
+    - kde_bootstrap
+    - kde
