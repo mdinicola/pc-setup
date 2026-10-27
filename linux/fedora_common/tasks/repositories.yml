@@ -28,6 +28,9 @@
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
     state: present
   become: yes
+  tags:
+    - flatpak
+    - flathub
 
 - name: Add SourceGit repository
   ansible.builtin.yum_repository:

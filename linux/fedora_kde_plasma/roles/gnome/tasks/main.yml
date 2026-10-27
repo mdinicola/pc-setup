@@ -1,0 +1,7 @@
+---
+- name: Run GNOME bootstrap role
+  ansible.builtin.import_tasks: 
+    file: "{{ playbook_dir }}/../../fedora_common/tasks/gnome.yml"
+  tags:
+    - gnome_bootstrap
+    - gnome

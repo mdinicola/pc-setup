@@ -20,4 +20,4 @@
 
 - name: Configure Docker
   ansible.builtin.import_tasks: 
-    file: "{{ playbook_dir }}/../../common/tasks/docker.yml"
+    file: "{{ playbook_dir }}/../../common/tasks/docker_settings.yml"

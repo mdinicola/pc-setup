@@ -1,0 +1,53 @@
+---
+- name: Install general packages
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  become: yes
+  loop:
+    - ca-certificates
+    - cifs-utils
+    - curl
+    - git
+    - xz
+    - gnupg2
+    - nmap
+    - jq
+    - openssl
+
+- name: Install rpm fusion packages
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    allowerasing: yes
+    state: present
+  become: yes
+  loop:
+    - ffmpeg
+
+- name: Update dnf groups to latest
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: latest
+  become: yes
+  loop:
+    - "@multimedia"
+
+- name: Install applications and tools
+  ansible.builtin.dnf:
+    name: "{{ item }}"  
+    state: present
+  become: yes
+  loop:
+    - brave-origin
+    - code # VS Code
+    - vlc
+    - sourcegit
+    - kopia-ui
+
+- name: Install cross-distro packages and applications
+  ansible.builtin.import_tasks: 
+    file: "{{ playbook_dir }}/../../common/tasks/packages.yml"
+  tags:
+    - packages
+    - apps
+    - flatpak

@@ -1,0 +1,34 @@
+---
+- name: Set git settings
+  ansible.builtin.import_tasks: 
+    file: git_settings.yml
+  tags:
+    - git_settings
+
+- name: Set vscode settings
+  ansible.builtin.import_tasks: 
+    file: vscode_settings.yml
+  tags:
+    - vscode
+
+- name: Read mise config.toml
+  ansible.builtin.set_fact:
+    mise_global_config: "{{ lookup('file', playbook_dir ~ '/../../common/files/mise.global.toml') }}"
+  tags:
+    - always
+
+- name: Set opentofu settings
+  ansible.builtin.import_tasks: 
+    file: opentofu_settings.yml
+  when: "'opentofu' in mise_global_config"
+  tags:
+    - tools
+    - opentofu
+
+- name: Set supabase settings
+  ansible.builtin.import_tasks: 
+    file: supabase_settings.yml
+  when: "'supabase' in mise_global_config"
+  tags:
+    - tools
+    - supabase

@@ -15,3 +15,9 @@
     path: "{{ ansible_facts['env']['HOME'] }}/.bashrc"
     line: 'eval "$(mise activate bash)"'
     state: present
+
+- name: Run mise install
+  ansible.builtin.command:
+    cmd: mise install
+  register: mise_install_result
+  changed_when: "'mise all tools are installed' not in mise_install_result.stderr"
