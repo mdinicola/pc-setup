@@ -8,6 +8,11 @@
     - apt-transport-https
     - ca-certificates
     - cifs-utils
+    - tpm2-tools
+    - clevis
+    - clevis-luks
+    - clevis-tpm2
+    - clevis-initramfs
     - curl
     - extrepo
     - xz-utils
