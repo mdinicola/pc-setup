@@ -133,9 +133,7 @@ Log folder contents:
 
 # Post-Bootstrap Steps
 
-## Linux
-
-### Disk Encryption Automatic Boot
+## Disk Encryption Automatic Boot
 
 If you chose to encrypt your drive while installing Fedora (either KDE or GNOME), you'll need to enter the disk encryption password during every bootup.
 
@@ -144,9 +142,11 @@ If your machine has TPM 2.0 support, you can configure it so that the disk is de
 > [!IMPORTANT]
 > Security Notice: Enabling automatic decryption during bootup adds a potential security risk.  Your drive will remain encrypted which adds protection for the drive itself being stolen.  However, if your machine such as a laptop is stolen, others will be able to load into the OS.
 
+### Fedora
+
 #### Verify TPM and Secure Boot is available
 
-1. Run 
+1. Run
 
     ```
     systemd-analyze has-tpm2
@@ -168,7 +168,7 @@ If your machine has TPM 2.0 support, you can configure it so that the disk is de
 
     **yes** is the most important, meaning that the machine has TPM 2.0 support
 
-2. Run 
+1. Run 
 
     ```
     mokutil --sb-state
@@ -235,7 +235,7 @@ The partition with `crypto_LUKS` is your encrypted partition.
 1. ```
     sudo nano /etc/crypttab
     ```
-    1. Add `,tpm2-device=auto` to the end of the line and save
+    1. Add `,x-initrd.attach,tpm2-device=auto` to the end of the line and save
 1. ```
     dracut --list-modules | grep -E 'tpm2|systemd-cryptsetup'
     ```
@@ -249,11 +249,118 @@ The partition with `crypto_LUKS` is your encrypted partition.
     ```
 1. If all commands complete successfully, reboot your machine.  You should not be prompted for your disk encryption password on boot up and it should load your OS successfully
 
-## Fedora GNOME
+### Linux Mint
 
-### Install Extensions
+#### Verify TPM and Secure Boot is available
 
-ExtensionManager is installed as part of the bootstrap process but installing the extensions themselves still is a manual step.
+1. Run
+
+    ```
+    systemd-creds has-tpm2
+    ```
+
+    It should return output similar to:
+
+    ```
+    yes
+    +firmware
+    +driver
+    +system
+    +subsystem
+    +libraries
+    ```
+
+    **yes** is the most important, meaning that the machine has TPM 2.0 support
+
+1. Run 
+
+    ```
+    mokutil --sb-state
+    ```
+
+    It should return `SecureBoot enabled`.  If it doesn't, you should enable Secure Boot in your BIOS settings if your machine supports it
+
+#### Find your encrypted partition
+
+Run
+
+```
+lsblk -f
+```
+
+It should return output similar to:
+
+```
+NAME                       FSTYPE      FSVER LABEL  UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
+sda
+├─sda1                     vfat        FAT32        55CE-9BAB                             578.7M     3% /boot/efi
+├─sda2                     ext4        1.0          6dceed6c-08eb-4892-99e3-6c34bcfd2326    1.4G    22% /boot
+└─sda3                     crypto_LUKS 2            9ff9d9b7-dc2a-4fe4-8761-ab64d2eadd44
+  └─luks-9ff9d9b7-dc2a-4fe4-8761-ab64d2eadd44
+                           btrfs             fedora d157f328-67c9-4047-8197-c135539a392d   22.4G    39% /home
+                                                                                                        /
+sr0
+zram0                      swap        1     zram0  1dc5eae9-929c-4584-ab12-ba51da5d6ce3                [SWAP]
+```
+
+The partition with `crypto_LUKS` is your encrypted partition.
+
+> [!IMPORTANT]
+> **The following steps assume the encrypted LUKS partition is /dev/sda3.  Replace with your actual partition if necessary.**
+
+#### Back up the LUKS header
+
+1. 
+    ```
+    sudo cryptsetup luksHeaderBackup /dev/sda3 \
+    --header-backup-file /root/luks-sda3-header.img
+    ```
+2. Copy the `/root/luks-sda3-header.img` file to a secure external storage location such as an external drive or NAS.  It will be used in case of disaster recovery.
+
+#### Set up automatic decryption with TPM
+
+> [!CAUTION]
+> **The commands in this section have the potential to break your system.  Make sure you understand each command before running.**
+
+1. ```
+    sudo clevis luks bind -d /dev/sda3 \
+        tpm2 '{"pcr_bank":"sha256","pcr_ids":"7"}'
+    ```
+    1. Enter your disk encryption password when prompted
+
+1. ```
+    sudo clevis luks list -d /dev/sda3
+   ```
+    1. The output should show a tpm2 entry similar to:
+        ```
+        1: tpm2 '{"hash":"sha256","key":"ecc","pcr_bank":"sha256","pcr_ids":"7"}'
+        ```
+
+1. ```
+    sudo update-initramfs -u -k all
+    ```
+1. ```
+    lsinitramfs /boot/initrd.img-$(uname -r) | grep clevis
+    ```
+    1. You should see Clevis scripts and executables similar to:
+        ```
+        scripts/local-bottom/clevis
+        scripts/local-top/clevis
+        usr/bin/clevis
+        usr/bin/clevis-decrypt
+        usr/bin/clevis-decrypt-null
+        usr/bin/clevis-decrypt-sss
+        usr/bin/clevis-decrypt-tang
+        usr/bin/clevis-decrypt-tpm2
+        usr/bin/clevis-luks-common-functions
+        usr/bin/clevis-luks-list
+        usr/bin/clevis-luks-unlock
+        ```
+1. If all commands complete successfully, reboot your machine.  You should not be prompted for your disk encryption password on boot up and it should load your OS successfully
+
+## GNOME Extensions
+
+ExtensionManager is installed as part of the GNOME bootstrap process but installing the extensions themselves still is a manual step.
 
 Some suggestions that I find helpful:
 
