@@ -44,6 +44,20 @@
     - sourcegit
     - kopia-ui
 
+- name: Install Docker
+  ansible.builtin.import_tasks: 
+    file: docker.yml
+  tags:
+    - docker
+    - tools
+
+- name: Install Mise
+  ansible.builtin.import_tasks: 
+    file: mise.yml
+  tags:
+    - mise
+    - tools
+
 - name: Install cross-distro packages and applications
   ansible.builtin.import_tasks: 
     file: "{{ playbook_dir }}/../../common/tasks/packages.yml"
