@@ -41,20 +41,7 @@
     - packages
     - apps
 
-- name: Install Docker
-  ansible.builtin.import_tasks: 
-    file: docker.yml
-  tags:
-    - docker
-
-- name: Install Mise
-  ansible.builtin.import_tasks: 
-    file: mise.yml
-  tags:
-    - mise
-    - tools
-
-- name: Configure settings and preferences
+- name: Configure common cross-distro settings and preferences
   ansible.builtin.import_tasks: 
     file: "{{ playbook_dir }}/../../common/tasks/settings.yml"
   tags:
