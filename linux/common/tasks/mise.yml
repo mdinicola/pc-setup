@@ -30,6 +30,13 @@
     line: 'eval "$(mise activate bash)"'
     state: present
 
+- name: Add mise shims to .bash_profile
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_env.HOME }}/.bash_profile"
+    line: 'eval "$(mise activate bash --shims)"'
+    insertafter: '^# \.bash_profile$'
+    state: present
+
 - name: Run mise install
   ansible.builtin.command:
     cmd: mise install
