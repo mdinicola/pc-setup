@@ -15,5 +15,10 @@
   ansible.builtin.import_tasks: 
     file: opentofu_settings.yml
   tags:
-    - tools
     - opentofu
+
+- name: Set claude settings
+  ansible.builtin.import_tasks: 
+    file: claude_settings.yml
+  tags:
+    - claude

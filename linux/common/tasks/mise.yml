@@ -23,6 +23,10 @@
       version: '"latest"'
     - name: aws-cli
       version: '"latest"'
+    - name: codex
+      version: '"latest"'
+    - name: claude-code
+      version: '"latest"'
 
 - name: Add mise activation to .bashrc
   ansible.builtin.lineinfile:
