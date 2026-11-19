@@ -1,0 +1,13 @@
+---
+- name: "Check {{ mise_tool }} installation"
+  ansible.builtin.command: "mise where {{ mise_tool }}"
+  register: mise_tool_check
+  changed_when: false
+  failed_when: false
+
+- name: "Set {{ mise_tool }} settings"
+  ansible.builtin.include_tasks:
+    file: "{{ mise_tool }}_settings.yml"
+    apply:
+      tags: "{{ mise_tool }}"
+  when: mise_tool_check.rc == 0

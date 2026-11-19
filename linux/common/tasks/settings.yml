@@ -13,12 +13,16 @@
 
 - name: Set opentofu settings
   ansible.builtin.import_tasks: 
-    file: opentofu_settings.yml
+    file: mise_tool_settings.yml
+  vars:
+    mise_tool: opentofu
   tags:
     - opentofu
 
 - name: Set claude settings
   ansible.builtin.import_tasks: 
-    file: claude_settings.yml
+    file: mise_tool_settings.yml
+  vars:
+    mise_tool: claude
   tags:
     - claude
