@@ -25,7 +25,7 @@
       version: '"latest"'
     - name: codex
       version: '"latest"'
-    - name: claude-code
+    - name: claude
       version: '"latest"'
 
 - name: Add mise activation to .bashrc
