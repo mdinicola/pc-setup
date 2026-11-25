@@ -57,12 +57,6 @@
 					"PackageIdentifier" : "KDE.KDiff3"
 				},
 				{
-					"PackageIdentifier" : "KDE.Kate"
-				},
-				{
-					"PackageIdentifier" : "Atlassian.Sourcetree"
-				},
-				{
 					"PackageIdentifier" : "jqlang.jq"
 				},
 				{
@@ -81,7 +75,10 @@
 					"PackageIdentifier" : "Amazon.AWSCLI"
 				},
 				{
-					"PackageIdentifier" : "Amazon.SAM-CLI"
+					"PackageIdentifier" : "OpenAI.Codex"
+				},
+				{
+					"PackageIdentifier" : "Anthropic.ClaudeCode"
 				}
 			],
 			"SourceDetails" : 
