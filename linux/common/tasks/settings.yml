@@ -26,3 +26,11 @@
     mise_tool: claude
   tags:
     - claude
+
+- name: Set codex settings
+  ansible.builtin.import_tasks: 
+    file: mise_tool_settings.yml
+  vars:
+    mise_tool: codex
+  tags:
+    - codex

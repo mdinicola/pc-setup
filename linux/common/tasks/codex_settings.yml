@@ -1,0 +1,13 @@
+---
+- name: Ensure Codex configuration directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts['env']['HOME'] }}/.codex"
+    state: directory
+
+- name: Disable Codex startup update checks
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_facts['env']['HOME'] }}/.codex/config.toml"
+    regexp: '^\s*check_for_update_on_startup\s*='
+    line: 'check_for_update_on_startup = false'
+    insertbefore: BOF
+    create: true
