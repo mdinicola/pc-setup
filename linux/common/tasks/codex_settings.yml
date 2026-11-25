@@ -11,3 +11,12 @@
     line: 'check_for_update_on_startup = false'
     insertbefore: BOF
     create: true
+
+- name: Disable Codex daemon
+  community.general.ini_file:
+    path: "{{ ansible_facts['env']['HOME'] }}/.codex/config.toml"
+    section: features
+    option: daemon_auto_start
+    value: "false"
+    create: true
+    
