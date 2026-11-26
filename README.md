@@ -401,8 +401,8 @@ Examples include:
 - uv
 - OpenTofu
 - AWS CLI
-- AWS SAM CLI
 - OpenAI Codex
+- Claude Code
 
 ## CLI and System Utilities
 
