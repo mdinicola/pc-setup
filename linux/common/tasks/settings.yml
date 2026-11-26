@@ -11,24 +11,26 @@
   tags:
     - vscode
 
-- name: Read mise config.toml
-  ansible.builtin.set_fact:
-    mise_global_config: "{{ lookup('file', playbook_dir ~ '/../../common/files/mise.global.toml') }}"
-  tags:
-    - always
-
 - name: Set opentofu settings
   ansible.builtin.import_tasks: 
-    file: opentofu_settings.yml
-  when: "'opentofu' in mise_global_config"
+    file: mise_tool_settings.yml
+  vars:
+    mise_tool: opentofu
   tags:
-    - tools
     - opentofu
 
-- name: Set supabase settings
+- name: Set claude settings
   ansible.builtin.import_tasks: 
-    file: supabase_settings.yml
-  when: "'supabase' in mise_global_config"
+    file: mise_tool_settings.yml
+  vars:
+    mise_tool: claude
   tags:
-    - tools
-    - supabase
+    - claude
+
+- name: Set codex settings
+  ansible.builtin.import_tasks: 
+    file: mise_tool_settings.yml
+  vars:
+    mise_tool: codex
+  tags:
+    - codex

@@ -4,16 +4,41 @@
     path: "{{ ansible_facts['env']['HOME'] }}/.config/mise"
     state: directory
 
-- name: Write global mise config file
-  ansible.builtin.copy:
-    src: "{{ playbook_dir }}/../../common/files/mise.global.toml"
-    dest: "{{ ansible_facts['env']['HOME'] }}/.config/mise/config.toml"
+- name: Add tools to mise global config file
+  community.general.ini_file:
+    path: "{{ ansible_facts['env']['HOME'] }}/.config/mise/config.toml"
+    section: tools
+    option: "{{ item.name }}"
+    value: "{{ item.version }}"
+    state: present
     mode: '0644'
+  loop:
+    - name: python
+      version: '"latest"'
+    - name: node
+      version: '"lts"'
+    - name: uv
+      version: '"latest"'
+    - name: opentofu
+      version: '"latest"'
+    - name: aws-cli
+      version: '"latest"'
+    - name: codex
+      version: '"latest"'
+    - name: claude
+      version: '"latest"'
 
 - name: Add mise activation to .bashrc
   ansible.builtin.lineinfile:
     path: "{{ ansible_facts['env']['HOME'] }}/.bashrc"
     line: 'eval "$(mise activate bash)"'
+    state: present
+
+- name: Add mise shims to .bash_profile
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_facts['env']['HOME'] }}/.bash_profile"
+    line: 'eval "$(mise activate bash --shims)"'
+    insertafter: '^# \.bash_profile$'
     state: present
 
 - name: Run mise install
