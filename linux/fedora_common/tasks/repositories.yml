@@ -37,8 +37,12 @@
     name: gitea-yataro
     description: yataro - Codeberg.org
     baseurl: https://codeberg.org/api/packages/yataro/rpm
-    gpgcheck: false # sourcegit package is not signed
     gpgkey: https://codeberg.org/api/packages/yataro/rpm/repository.key
+    gpgcheck: false # from sourcegit installation documentation
+    repo_gpgcheck: true
+    includepkgs:
+      - sourcegit
+    sslverify: true
     file: sourcegit
     enabled: true
   become: yes
